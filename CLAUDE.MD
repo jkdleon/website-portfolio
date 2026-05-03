@@ -76,3 +76,8 @@ Deployed on Vercel. The `main` branch auto-deploys. Before pushing:
 - Do not change Tailwind color palette or font tokens without a clear reason
 - Do not restructure `components/landing/` without updating the page imports that reference it
 - Do not use `any` in TypeScript — define proper types or interfaces
+
+## Session Workflow
+
+- **Handoff after every task:** Create or update `handoffs/YYYY-MM-DD_HH-MM/handoff.md` at task end — mark steps `[x]`, note git state, list what's next
+- **Naming convention:** All folders and files use `kebab-case`. Ask permission before renaming anything that doesn't conform.
