@@ -1,41 +1,53 @@
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import { SectionLabel } from '@/components/ui/SectionLabel';
 import { personal } from '@/lib/constants/personal';
 
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
-      <div className="max-w-4xl mx-auto px-6">
-        <p className="font-mono text-accent text-sm mb-2 tracking-widest uppercase">
-          06. Contact
-        </p>
-        <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
-        <p className="text-muted mb-8 max-w-lg leading-relaxed">
-          I&apos;m actively looking for remote opportunities in Cloud &amp; DevOps. Whether you have a
-          question or just want to say hi, my inbox is always open.
-        </p>
-        <div className="flex flex-wrap gap-4">
+      <div className="max-w-6xl mx-auto px-5">
+        <SectionLabel
+          index="06"
+          label="letsChat"
+          title="Working on something interesting?"
+          kicker="Cloud migration, network refresh, or anything that needs an operator's eye — my inbox is open."
+        />
+
+        <div className="border border-border rounded-lg bg-surface p-6 md:p-8">
           <a
             href={`mailto:${personal.email}`}
-            className="px-6 py-3 bg-accent text-white font-semibold rounded hover:bg-accent/90 transition-colors"
+            className="font-mono text-lg md:text-2xl text-accent hover:underline break-all"
           >
-            Send an Email
+            {personal.email}
           </a>
-          <a
-            href={personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-border text-muted font-semibold rounded hover:border-accent hover:text-accent transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href={personal.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-border text-muted font-semibold rounded hover:border-accent hover:text-accent transition-colors"
-          >
-            LinkedIn
-          </a>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={`mailto:${personal.email}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
+            >
+              Send Email →
+            </a>
+            <a
+              href={personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chip"
+            >
+              GitHub
+            </a>
+            <a
+              href={personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chip"
+            >
+              LinkedIn
+            </a>
+            <a href="/resume.pdf" download className="chip">
+              Resume PDF
+            </a>
+          </div>
         </div>
       </div>
     </SectionWrapper>

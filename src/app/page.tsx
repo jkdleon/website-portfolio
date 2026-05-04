@@ -1,4 +1,5 @@
 import Nav from '@/components/ui/Nav';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import Hero from '@/components/landing/Hero';
 import About from '@/components/landing/About';
 import Experience from '@/components/landing/Experience';
@@ -10,6 +11,7 @@ import Contact from '@/components/landing/Contact';
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
@@ -20,10 +22,15 @@ export default function Home() {
         <Projects />
         <Contact />
       </main>
-      <footer className="border-t border-border py-8 text-center">
-        <p className="font-mono text-xs text-muted">
-          James Kyle De Leon &middot; Built with Next.js &amp; Tailwind
-        </p>
+      <footer className="border-t border-border py-10">
+        <div className="max-w-6xl mx-auto px-5 flex flex-wrap items-center justify-between gap-3">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-subtle">
+            {'// network × cloud × ops'}
+          </p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-subtle">
+            &copy; 2026 James Kyle De Leon
+          </p>
+        </div>
       </footer>
     </>
   );

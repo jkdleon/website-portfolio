@@ -8,24 +8,36 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-surface: var(--surface);
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0a0a0a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --accent: #06b6d4;
+  --background: #f6f6f3;
+  --surface: #ffffff;
+  --foreground: #0c0c0d;
+  --muted: #4a4a52;
+  --subtle: #84848c;
+  --border: #e4e4df;
+  --border-strong: #c8c8c0;
+  --accent: #0ea5b7;
+  --accent-soft: rgba(14, 165, 183, 0.12);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #f8fafc;
-  --muted: #94a3b8;
-  --border: #1e293b;
-  --accent: #06b6d4;
+  --background: #08090b;
+  --surface: #0e1013;
+  --foreground: #f4f4f1;
+  --muted: #a8a8ac;
+  --subtle: #6a6a72;
+  --border: #1c1f24;
+  --border-strong: #2a2e35;
+  --accent: #5eead4;
+  --accent-soft: rgba(94, 234, 212, 0.12);
 }
 
 html {
@@ -35,4 +47,85 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+@layer utilities {
+  .label-block::after {
+    content: "█";
+    display: inline-block;
+    margin-left: 0.35rem;
+    color: var(--accent);
+    transform: translateY(-1px);
+    animation: blink 1.6s steps(2, start) infinite;
+  }
+
+  .gutter-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--subtle);
+    letter-spacing: 0.04em;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--muted);
+    background: var(--surface);
+    transition: all 0.15s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .chip-solid {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+  }
+
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px var(--border-strong),
+      0 0 60px -10px var(--accent-soft);
+  }
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
