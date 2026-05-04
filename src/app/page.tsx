@@ -2,11 +2,15 @@ import Nav from '@/components/ui/Nav';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import Hero from '@/components/landing/Hero';
 import About from '@/components/landing/About';
-import Experience from '@/components/landing/Experience';
 import Skills from '@/components/landing/Skills';
+import DataAnalytics from '@/components/landing/DataAnalytics';
 import Certifications from '@/components/landing/Certifications';
+import AcademicLog from '@/components/landing/AcademicLog';
+import Experience from '@/components/landing/Experience';
+import FeaturedVenture from '@/components/landing/FeaturedVenture';
 import Projects from '@/components/landing/Projects';
 import Contact from '@/components/landing/Contact';
+import Footer from '@/components/landing/Footer';
 
 export default function Home() {
   return (
@@ -14,24 +18,18 @@ export default function Home() {
       <ScrollProgress />
       <Nav />
       <main>
-        <Hero />
+        <Hero id="overview" />
         <About />
-        <Experience />
-        <Skills />
+        <Skills id="skills" />
+        <DataAnalytics />
         <Certifications />
-        <Projects />
+        <AcademicLog id="education" />
+        <Experience id="history" />
+        <FeaturedVenture id="venture" />
+        <Projects id="projects" />
         <Contact />
       </main>
-      <footer className="border-t border-border py-10">
-        <div className="max-w-6xl mx-auto px-5 flex flex-wrap items-center justify-between gap-3">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-subtle">
-            {'// network × cloud × ops'}
-          </p>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-subtle">
-            &copy; 2026 James Kyle De Leon
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

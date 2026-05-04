@@ -8,5 +8,6 @@ export const projects: Project[] = [
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     link: 'https://github.com/jkdleon/website-portfolio',
     linkLabel: 'View on GitHub',
+    category: 'Software Development',
   },
 ];

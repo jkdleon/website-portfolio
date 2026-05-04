@@ -5,20 +5,18 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { projects } from '@/lib/constants/projects';
 
-export default function Projects() {
+export default function Projects({ id }: { id?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (projects.length === 0) return null;
 
   return (
-    <SectionWrapper id="projects">
+    <SectionWrapper id={id ?? 'projects'}>
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel
-          index="05"
-          label="selectedWork"
-          title="Things I've built."
-          kicker="A curated list. Click any entry to expand the details."
-        />
+        <SectionLabel label="selectedWork" />
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
+          Things I&apos;ve built.
+        </h2>
 
         <ol className="border-t border-border">
           {projects.map((project, i) => {
@@ -37,13 +35,18 @@ export default function Projects() {
                     </span>
 
                     <div>
-                      <h3
-                        className={`text-xl md:text-2xl font-semibold tracking-tight transition-colors ${
-                          isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
-                        }`}
-                      >
-                        {project.title}
-                      </h3>
+                      <div className="flex flex-wrap items-center gap-3 mb-1">
+                        {project.category && (
+                          <span className="chip-mono">{project.category}</span>
+                        )}
+                        <h3
+                          className={`text-xl md:text-2xl font-semibold tracking-tight transition-colors ${
+                            isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
+                          }`}
+                        >
+                          {project.title}
+                        </h3>
+                      </div>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {project.tags.map((tag) => (
                           <span key={tag} className="chip pointer-events-none">
@@ -60,7 +63,9 @@ export default function Projects() {
                     >
                       {isOpen ? 'Close' : 'Explore'}
                       <span
-                        className={`transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}
+                        className={`transition-transform duration-300 inline-block ${
+                          isOpen ? 'rotate-45' : 'rotate-0'
+                        }`}
                       >
                         →
                       </span>
@@ -82,7 +87,7 @@ export default function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background font-mono text-xs tracking-widest uppercase hover:opacity-80 transition-opacity"
                       >
                         {project.linkLabel} →
                       </a>

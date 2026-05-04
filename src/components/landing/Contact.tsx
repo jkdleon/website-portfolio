@@ -5,49 +5,39 @@ import { personal } from '@/lib/constants/personal';
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
-      <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel
-          index="06"
-          label="letsChat"
-          title="Working on something interesting?"
-          kicker="Cloud migration, network refresh, or anything that needs an operator's eye — my inbox is open."
-        />
+      <div className="max-w-6xl mx-auto px-5 text-center">
+        <SectionLabel label="letsChat" />
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4">
+          Working on something interesting?
+        </h2>
+        <p className="text-muted max-w-lg mx-auto mb-8 leading-relaxed">
+          Cloud migration, network refresh, or anything that needs an operator&apos;s eye — my inbox
+          is open.
+        </p>
 
-        <div className="border border-border rounded-lg bg-surface p-6 md:p-8">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href={`mailto:${personal.email}`}
-            className="font-mono text-lg md:text-2xl text-accent hover:underline break-all"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-full font-mono text-[11px] uppercase tracking-widest hover:opacity-80 transition-opacity"
           >
-            {personal.email}
+            Send Email
           </a>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${personal.email}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
-            >
-              Send Email →
-            </a>
-            <a
-              href={personal.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="chip"
-            >
-              GitHub
-            </a>
-            <a
-              href={personal.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="chip"
-            >
-              LinkedIn
-            </a>
-            <a href="/resume.pdf" download className="chip">
-              Resume PDF
-            </a>
-          </div>
+          <a
+            href={personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="chip"
+          >
+            GitHub
+          </a>
+          <a
+            href={personal.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="chip"
+          >
+            LinkedIn
+          </a>
         </div>
       </div>
     </SectionWrapper>

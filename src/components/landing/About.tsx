@@ -1,43 +1,26 @@
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
-import { personal } from '@/lib/constants/personal';
+import { StatCard } from '@/components/ui/StatCard';
+import { experience } from '@/lib/constants/experience';
+import { certifications } from '@/lib/constants/certifications';
+import { skills } from '@/lib/constants/skills';
+
+const totalSkills = skills.reduce((sum, cat) => sum + cat.skills.length, 0);
 
 export default function About() {
   return (
     <SectionWrapper id="about">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel
-          index="01"
-          label="processExcellence"
-          title="Operations discipline, network depth, cloud trajectory."
-        />
+        <SectionLabel label="processExcellence" />
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
+          Operations discipline, network depth, cloud trajectory.
+        </h2>
 
-        <div className="grid md:grid-cols-[1fr_auto] gap-10">
-          <div className="space-y-5 text-muted leading-relaxed max-w-2xl">
-            {personal.bio.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
-          </div>
-
-          <aside className="md:w-64 border border-border rounded-lg bg-surface p-5 h-fit">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-subtle mb-3">
-              focus areas
-            </p>
-            <ul className="space-y-2 font-mono text-xs">
-              {[
-                'Network engineering',
-                'Cloud infrastructure',
-                'CI/CD pipelines',
-                'Container orchestration',
-                'Infrastructure as code',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-muted">
-                  <span className="text-accent">+</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </aside>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <StatCard value={7} suffix="+" label="Years Experience" />
+          <StatCard value={experience.length} suffix="" label="Roles Held" />
+          <StatCard value={certifications.length} suffix="" label="Certifications" />
+          <StatCard value={totalSkills} suffix="+" label="Skills" />
         </div>
       </div>
     </SectionWrapper>

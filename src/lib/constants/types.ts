@@ -34,4 +34,13 @@ export interface Project {
   tags: string[];
   link: string;
   linkLabel: string;
+  category?: string;
+  featured?: boolean;
+}
+
+export interface EducationEntry {
+  degree: string;
+  institution: string;
+  dates: string;
+  details?: string[];
 }
