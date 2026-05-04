@@ -90,6 +90,17 @@ body {
   .chip:hover {
     border-color: var(--accent);
     color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -12px color-mix(in srgb, var(--accent) 20%, transparent);
+    border-color: var(--border-strong);
   }
 
   .chip-solid {

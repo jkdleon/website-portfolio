@@ -13,11 +13,11 @@ export default function Skills() {
           kicker="Grouped by domain. Heavier on networking and observability — sharpening on the cloud and DevOps side."
         />
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-4">
           {skills.map((category) => (
             <div
               key={category.name}
-              className="border border-border rounded-lg bg-surface p-5"
+              className="lift border border-border rounded-lg bg-surface p-5"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-mono text-[11px] uppercase tracking-widest text-subtle">
@@ -29,7 +29,7 @@ export default function Skills() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <span key={skill} className="chip">
+                  <span key={skill} className="chip cursor-default">
                     {skill}
                   </span>
                 ))}

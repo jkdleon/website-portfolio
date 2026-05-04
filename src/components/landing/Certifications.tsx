@@ -16,10 +16,10 @@ export default function Certifications() {
           {certifications.map((cert, i) => (
             <article
               key={cert.name}
-              className="relative border border-border rounded-lg bg-surface p-5 hover:border-border-strong transition-colors"
+              className="lift relative border border-border rounded-lg bg-surface p-5"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="chip chip-solid">{cert.issuer}</span>
+                <span className="chip chip-solid pointer-events-none">{cert.issuer}</span>
                 <span className="font-mono text-[10px] uppercase tracking-widest text-accent flex items-center gap-1">
                   <span aria-hidden="true">✓</span> Verified
                 </span>

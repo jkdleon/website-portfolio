@@ -22,7 +22,7 @@ export function SectionWrapper({ id, children, className = '' }: SectionWrapperP
           observer.disconnect();
         }
       },
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -32,9 +32,14 @@ export function SectionWrapper({ id, children, className = '' }: SectionWrapperP
     <section
       id={id}
       ref={ref}
-      className={`scroll-mt-20 py-20 md:py-28 transition-all duration-700 ease-out ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-      } ${className}`}
+      className={`scroll-mt-20 py-20 md:py-28 ${className}`}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(28px)',
+        transition: visible
+          ? 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+          : 'none',
+      }}
     >
       {children}
     </section>
