@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# James Kyle De Leon — Personal Portfolio
 
-## Getting Started
+A dark-first, single-page personal portfolio built with Next.js and Tailwind CSS. Designed to be clean, minimal, and fast — showcasing professional history, skills, certifications, and projects in a structured layout.
 
-First, run the development server:
+**Live site:** [website-portfolio-three-zeta.vercel.app](https://website-portfolio-three-zeta.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Fonts | Syne (headings) + Manrope (body) via `next/font/google` |
+| Deployment | Vercel (auto-deploy on push to `master`) |
+
+---
+
+## Features
+
+- **Dark-first design** with smooth scroll and scroll progress indicator
+- **Responsive nav** with pill tab layout, scroll-spy active state, and mobile hamburger
+- **Hero** — centered layout with profile photo, tagline, social chips, and CTA buttons
+- **Skills** — interactive category tab switcher across 6 skill domains
+- **Experience** — numbered accordion (click to expand/collapse per company)
+- **Certifications** — stacked authorized badge cards
+- **Projects** — card grid with category tags
+- **Contact** — centered call-to-action block
+- All content is **data-driven** — edit the constants, not the components
+
+---
+
+## Project Structure
+
+```
+src/
+  app/              # Next.js App Router (layout, page, globals.css)
+  components/
+    landing/        # Page section components (Hero, Skills, Experience, etc.)
+    ui/             # Reusable primitives (Nav, Avatar, SectionWrapper, etc.)
+  lib/
+    constants/      # Portfolio content — projects, skills, experience, education
+    animations/     # Scroll-reveal helpers
+    utils/          # General utilities
+public/             # Static assets (profile photo, resume PDF)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Updating Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All portfolio content lives in `src/lib/constants/`. Edit these files to update the site — no component changes needed:
 
-## Learn More
+| File | What it controls |
+|---|---|
+| `personal.ts` | Name, tagline, email, GitHub, LinkedIn |
+| `experience.ts` | Work history (company, role, dates, bullets) |
+| `skills.ts` | Skill categories and items |
+| `projects.ts` | Project cards (set `featured: true` to surface in Featured Venture) |
+| `education.ts` | Academic background entries |
+| `certifications.ts` | Certification badges |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Local Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Install dependencies
+npm install
 
-## Deploy on Vercel
+# Start dev server
+npm run dev
+# → http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Production build check
+npm run build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Lint
+npm run lint
+```
+
+Copy `.env.example` to `.env.local` before running if environment variables are needed.
+
+---
+
+## Deployment
+
+Deployed on Vercel. Pushing to `master` triggers an automatic redeploy. Before pushing:
+
+```bash
+npm run build   # catch type/build errors
+npm run lint    # resolve any warnings
+```
+
+---
+
+## Design Reference
+
+The visual direction and layout of this site were informed by studying a well-crafted personal portfolio site. Key design decisions — dark-first color palette, typography hierarchy, section structure, and interactive patterns — were adapted and rebuilt from scratch to suit this portfolio's content and identity.
+
+---
+
+## License
+
+Personal portfolio — not intended for redistribution.
