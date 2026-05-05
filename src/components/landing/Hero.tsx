@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { personal } from '@/lib/constants/personal';
-import { Avatar } from '@/components/ui/Avatar';
 import { ScrollPrompt } from '@/components/ui/ScrollPrompt';
 
 export default function Hero({ id }: { id?: string }) {
@@ -9,9 +9,16 @@ export default function Hero({ id }: { id?: string }) {
       className="scroll-mt-14 min-h-screen flex flex-col items-center justify-center pt-20 pb-16 text-center px-5"
     >
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
-        {/* Avatar */}
+        {/* Profile photo */}
         <div className="mb-6">
-          <Avatar initials="JK" size={96} />
+          <Image
+            src="/pic.jpg"
+            alt={personal.name}
+            width={96}
+            height={96}
+            className="rounded-full object-cover border border-border"
+            priority
+          />
         </div>
 
         {/* Tagline above name */}
