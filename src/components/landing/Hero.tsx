@@ -3,60 +3,69 @@ import { Avatar } from '@/components/ui/Avatar';
 import { ScrollPrompt } from '@/components/ui/ScrollPrompt';
 
 export default function Hero({ id }: { id?: string }) {
-  const parts = personal.name.toLowerCase().split(' ');
-  const firstLine = parts[0];
-  const secondLine = parts.slice(1).join(' ');
-
   return (
     <section
       id={id}
-      className="scroll-mt-14 min-h-[90vh] flex flex-col justify-center pt-24 pb-16"
+      className="scroll-mt-14 min-h-screen flex flex-col items-center justify-center pt-20 pb-16 text-center px-5"
     >
-      <div className="max-w-6xl mx-auto px-5 w-full">
-        <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-12 md:gap-8">
-          {/* Left column */}
-          <div className="flex-1">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-foreground">
-              <span className="block">{firstLine}</span>
-              <span className="block">{secondLine}</span>
-            </h1>
-
-            <p className="mt-6 text-muted text-base md:text-lg max-w-md leading-relaxed">
-              {personal.tagline}
-            </p>
-
-            <p className="mt-2 font-mono text-xs text-subtle tracking-widest uppercase">
-              {personal.openToRemote}
-            </p>
-
-            <div className="mt-10 flex items-center gap-4 flex-wrap">
-              <a
-                href={`mailto:${personal.email}`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full font-mono text-[11px] uppercase tracking-widest hover:opacity-80 transition-opacity"
-              >
-                Let&apos;s Chat
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-full font-mono text-[11px] uppercase tracking-widest text-muted hover:border-border-strong hover:text-foreground transition-colors"
-              >
-                Resume
-              </a>
-            </div>
-          </div>
-
-          {/* Right column — circular avatar */}
-          <div className="flex md:justify-end">
-            <Avatar initials="JK" size={200} />
-          </div>
+      <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
+        {/* Avatar */}
+        <div className="mb-6">
+          <Avatar initials="JK" size={96} />
         </div>
 
-        {/* Scroll prompt */}
-        <div className="mt-16 md:mt-20">
-          <ScrollPrompt />
+        {/* Tagline above name */}
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
+          {personal.tagline}
+        </p>
+
+        {/* Giant name */}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-[1.0] text-foreground mb-8">
+          {personal.name}
+        </h1>
+
+        {/* Social chips */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          <a
+            href={personal.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="chip"
+          >
+            <span className="text-accent">↗</span> LinkedIn
+          </a>
+          <a
+            href={personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="chip"
+          >
+            <span className="text-accent">↗</span> GitHub
+          </a>
+          <span className="chip pointer-events-none">
+            📍 {personal.openToRemote}
+          </span>
         </div>
+
+        {/* CTA buttons */}
+        <div className="flex items-center gap-4 flex-wrap justify-center mb-16">
+          <a
+            href={`mailto:${personal.email}`}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-full font-mono text-[11px] uppercase tracking-widest hover:opacity-80 transition-opacity"
+          >
+            Let&apos;s Chat
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full font-mono text-[11px] uppercase tracking-widest text-muted hover:border-border-strong hover:text-foreground transition-colors"
+          >
+            Resume
+          </a>
+        </div>
+
+        <ScrollPrompt />
       </div>
     </section>
   );

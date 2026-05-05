@@ -1,14 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ThemeToggle } from './ThemeToggle';
+import { personal } from '@/lib/constants/personal';
 
 const tabs = [
   { label: 'Overview', href: '#overview' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
   { label: 'History', href: '#history' },
-  { label: 'Venture', href: '#venture' },
   { label: 'Projects', href: '#projects' },
 ];
 
@@ -40,7 +38,7 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between gap-4">
         {/* Let's Chat — left anchor */}
         <a
-          href="mailto:kyleraizel@gmail.com"
+          href={`mailto:${personal.email}`}
           className="hidden lg:block shrink-0 font-mono text-[11px] uppercase tracking-widest text-subtle hover:text-accent transition-colors"
         >
           Let&apos;s Chat
@@ -66,14 +64,11 @@ export default function Nav() {
           })}
         </div>
 
-        {/* Theme toggle — right */}
-        <div className="hidden md:flex items-center">
-          <ThemeToggle />
-        </div>
+        {/* Spacer to balance the left anchor */}
+        <div className="hidden lg:block w-[80px]" />
 
-        {/* Mobile: Let's Chat + toggle + hamburger */}
+        {/* Mobile: hamburger */}
         <div className="flex md:hidden items-center gap-3 ml-auto">
-          <ThemeToggle />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-foreground p-1"
@@ -99,7 +94,7 @@ export default function Nav() {
             </a>
           ))}
           <a
-            href="mailto:kyleraizel@gmail.com"
+            href={`mailto:${personal.email}`}
             className="block py-2 font-mono text-xs uppercase tracking-widest text-accent"
           >
             Let&apos;s Chat
