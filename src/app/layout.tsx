@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
 import "./globals.css";
+import { ThreeBackground } from "@/components/ui/ThreeBackground";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -37,7 +38,10 @@ export default function RootLayout({
       <body
         className={`${syne.variable} ${manrope.variable} antialiased bg-background text-foreground`}
       >
-        {children}
+        <ThreeBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );
