@@ -24,9 +24,9 @@ export default function FeaturedVenture({ id }: { id?: string }) {
           <p className="text-muted leading-relaxed max-w-2xl mb-6">{featured.description}</p>
 
           <div className="flex flex-wrap gap-2 mb-8">
-            {featured.tags.map((tag) => (
-              <span key={tag} className="chip pointer-events-none">
-                {tag}
+            {featured.tools.map((tool) => (
+              <span key={tool} className="chip pointer-events-none">
+                {tool}
               </span>
             ))}
           </div>

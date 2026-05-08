@@ -8,13 +8,17 @@ export interface PersonalInfo {
   bio: string[];
 }
 
-export interface ExperienceEntry {
-  company: string;
-  location: string;
+export interface Role {
   title: string;
   startDate: string;
   endDate: string;
   bullets: string[];
+}
+
+export interface ExperienceEntry {
+  company: string;
+  location: string;
+  roles: Role[];
 }
 
 export interface SkillCategory {
@@ -30,11 +34,15 @@ export interface Certification {
 
 export interface Project {
   title: string;
+  category?: string;
   description: string;
-  tags: string[];
+  challenge?: string;
+  solution?: string;
+  tools: string[];
+  businessImpact?: string;
   link: string;
   linkLabel: string;
-  category?: string;
+  caseStudyHref?: string;
   featured?: boolean;
 }
 

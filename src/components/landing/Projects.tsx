@@ -1,12 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { projects } from '@/lib/constants/projects';
+import { Project } from '@/lib/constants/types';
 
 export default function Projects({ id }: { id?: string }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (!activeProject) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveProject(null);
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [activeProject]);
 
   if (projects.length === 0) return null;
 
@@ -14,91 +29,218 @@ export default function Projects({ id }: { id?: string }) {
     <SectionWrapper id={id ?? 'projects'}>
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel label="selectedWork" />
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
-          Things I&apos;ve built.
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
+          Selected Work
         </h2>
+        <p className="text-muted text-sm md:text-base mt-3 mb-12 max-w-2xl">
+          A few projects that highlight how I approach problems end-to-end.
+        </p>
 
-        <ol className="border-t border-border">
+        <div className="space-y-6">
           {projects.map((project, i) => {
-            const isOpen = openIndex === i;
-
+            const isHovered = hoverIndex === i;
             return (
-              <li key={project.title} className="border-b border-border">
-                <button
-                  className="w-full text-left py-6 group"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                >
-                  <div className="grid grid-cols-[auto_1fr_auto] gap-5 md:gap-8 items-start">
-                    <span className="font-mono text-sm text-subtle pt-1 tabular-nums">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+              <button
+                key={project.title}
+                type="button"
+                onClick={() => setActiveProject(project)}
+                onMouseEnter={() => setHoverIndex(i)}
+                onMouseLeave={() => setHoverIndex(null)}
+                onFocus={() => setHoverIndex(i)}
+                onBlur={() => setHoverIndex(null)}
+                className={`group block w-full text-left rounded-2xl border bg-surface/60 overflow-hidden transition-all duration-300 ${
+                  isHovered
+                    ? 'border-accent/40 shadow-[0_24px_60px_-24px_rgba(56,189,248,0.25)]'
+                    : 'border-border'
+                }`}
+              >
+                <div className="grid md:grid-cols-[1.1fr_1fr] gap-0">
+                  {/* Left: title side */}
+                  <div className="p-7 md:p-10 flex flex-col justify-between min-h-[260px]">
+                    <div className="flex items-center gap-2">
+                      {project.category && (
+                        <span className="chip-mono">{project.category}</span>
+                      )}
+                    </div>
 
-                    <div>
-                      <div className="flex flex-wrap items-center gap-3 mb-1">
-                        {project.category && (
-                          <span className="chip-mono">{project.category}</span>
-                        )}
-                        <h3
-                          className={`text-xl md:text-2xl font-semibold tracking-tight transition-colors ${
-                            isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
-                          }`}
-                        >
-                          {project.title}
-                        </h3>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="chip pointer-events-none">
-                            {tag}
-                          </span>
-                        ))}
+                    <div className="mt-10">
+                      <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground leading-tight">
+                        {project.title}
+                      </h3>
+                      <div
+                        className={`grid transition-all duration-500 ease-out ${
+                          isHovered ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="text-muted text-sm md:text-base leading-relaxed max-w-md">
+                            {project.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
-                    <span
-                      className={`mt-1 font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-colors flex items-center gap-1 ${
-                        isOpen ? 'text-accent' : 'text-subtle group-hover:text-accent'
+                    <div
+                      className={`flex items-center justify-end gap-2 font-mono text-[11px] tracking-widest uppercase mt-6 transition-colors ${
+                        isHovered ? 'text-accent' : 'text-subtle group-hover:text-accent'
                       }`}
                     >
-                      {isOpen ? 'Close' : 'Explore'}
+                      Explore
                       <span
-                        className={`transition-transform duration-300 inline-block ${
-                          isOpen ? 'rotate-45' : 'rotate-0'
+                        className={`inline-block transition-transform duration-300 ${
+                          isHovered ? 'translate-x-1' : ''
                         }`}
                       >
                         →
                       </span>
-                    </span>
+                    </div>
                   </div>
-                </button>
 
-                <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="pb-6 pl-10 md:pl-14 border-t border-border pt-5">
-                      <p className="text-muted leading-relaxed mb-5 max-w-2xl">
-                        {project.description}
-                      </p>
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background font-mono text-xs tracking-widest uppercase hover:opacity-80 transition-opacity"
-                      >
-                        {project.linkLabel} →
-                      </a>
+                  {/* Right: hover-reveal preview */}
+                  <div
+                    className={`grid transition-all duration-500 ease-out ${
+                      isHovered
+                        ? 'grid-cols-[1fr] opacity-100'
+                        : 'grid-cols-[0fr] md:grid-cols-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="h-full p-7 md:p-10 bg-background/40 border-t md:border-t-0 md:border-l border-border flex flex-col gap-6">
+                        {project.challenge && (
+                          <div>
+                            <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">
+                              ◇ Challenge
+                            </p>
+                            <p className="text-muted text-sm leading-relaxed">
+                              {project.challenge}
+                            </p>
+                          </div>
+                        )}
+                        {project.tools.length > 0 && (
+                          <div>
+                            <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                              ◇ Tech Stack
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tools.map((tool) => (
+                                <span key={tool} className="chip pointer-events-none">
+                                  {tool}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <div className="mt-auto">
+                          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase">
+                            View Case Study →
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </li>
+              </button>
             );
           })}
-        </ol>
+        </div>
       </div>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+      )}
     </SectionWrapper>
+  );
+}
+
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 md:py-16"
+    >
+      <div
+        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div className="relative w-full max-w-3xl max-h-full overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-5 right-5 w-8 h-8 inline-flex items-center justify-center rounded-full text-subtle hover:text-foreground hover:bg-border/40 transition-colors"
+        >
+          ×
+        </button>
+        <div className="p-8 md:p-12">
+          {project.category && (
+            <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 text-center">
+              ◇ {project.category}
+            </p>
+          )}
+          <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground text-center mb-10">
+            {project.title}
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-10">
+            {project.challenge && (
+              <div>
+                <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                  The Challenge
+                </p>
+                <p className="text-muted text-sm leading-relaxed">{project.challenge}</p>
+              </div>
+            )}
+            {project.solution && (
+              <div>
+                <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                  The Solution
+                </p>
+                <p className="text-muted text-sm leading-relaxed">{project.solution}</p>
+              </div>
+            )}
+          </div>
+
+          {project.tools.length > 0 && (
+            <div className="mb-10">
+              <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                Tools &amp; Skills
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tools.map((tool) => (
+                  <span key={tool} className="chip pointer-events-none">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.businessImpact && (
+            <div className="rounded-xl border border-border bg-background/60 p-6 mb-8">
+              <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                ◇ Business Impact
+              </p>
+              <p className="text-foreground text-base leading-relaxed">
+                {project.businessImpact}
+              </p>
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={project.caseStudyHref ?? project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase hover:opacity-90 transition-opacity"
+            >
+              {project.linkLabel} →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
