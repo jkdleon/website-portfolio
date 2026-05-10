@@ -233,7 +233,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           {project.businessImpact && (
             <div className="rounded-xl border border-border bg-background/60 p-6 mb-8">
               <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
-                ◇ Business Impact
+                ◇ Impact
               </p>
               <p className="text-foreground text-base leading-relaxed">
                 {project.businessImpact}
