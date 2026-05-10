@@ -12,7 +12,7 @@ export default function Skills({ id }: { id?: string }) {
   return (
     <SectionWrapper id={id ?? 'skills'}>
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel label="technicalCommandCenter" />
+        <SectionLabel label="Skills" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
           Competency matrix.
         </h2>

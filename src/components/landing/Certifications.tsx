@@ -6,7 +6,7 @@ export default function Certifications() {
   return (
     <SectionWrapper id="certifications">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel label="verifiedCredentials" />
+        <SectionLabel label="Credentials" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
           Certifications on record.
         </h2>

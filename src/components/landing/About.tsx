@@ -11,7 +11,7 @@ export default function About() {
   return (
     <SectionWrapper id="about">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel label="processExcellence" />
+        <SectionLabel label="personal stats" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-10">
           Operations discipline, network depth, cloud trajectory.
         </h2>

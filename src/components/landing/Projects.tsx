@@ -28,9 +28,9 @@ export default function Projects({ id }: { id?: string }) {
   return (
     <SectionWrapper id={id ?? 'projects'}>
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel label="selectedWork" />
+        <SectionLabel label="selected work" />
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
-          Selected Work
+          Projects
         </h2>
         <p className="text-muted text-sm md:text-base mt-3 mb-12 max-w-2xl">
           A few projects that highlight how I approach problems end-to-end.
