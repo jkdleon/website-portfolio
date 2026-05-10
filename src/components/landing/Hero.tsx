@@ -10,12 +10,12 @@ export default function Hero({ id }: { id?: string }) {
     >
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
         {/* Profile photo */}
-        <div className="mb-6">
+        <div className="mb-12">
           <Image
             src="/pic.jpg"
             alt={personal.name}
-            width={96}
-            height={96}
+            width={240}
+            height={240}
             className="rounded-full object-cover border border-border"
             priority
           />
