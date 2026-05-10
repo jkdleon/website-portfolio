@@ -16,14 +16,6 @@ export default function Contact() {
             Send Email
           </a>
           <a
-            href={personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="chip"
-          >
-            GitHub
-          </a>
-          <a
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
