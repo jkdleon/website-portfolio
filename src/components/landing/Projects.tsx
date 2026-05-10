@@ -59,11 +59,11 @@ export default function Projects({ id }: { id?: string }) {
                   className="grid overflow-hidden"
                   style={{
                     gridTemplateColumns: isHovered ? '55fr 45fr' : '1fr 0fr',
-                    transition: 'grid-template-columns 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+                    transition: 'grid-template-columns 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   }}
                 >
                   {/* ── Left panel ── */}
-                  <div className="flex flex-col min-h-[280px] p-8 md:p-10">
+                  <div className="flex flex-col min-h-[180px] p-6 md:p-8">
 
                     {/* Category chip — top */}
                     <div>
@@ -84,7 +84,7 @@ export default function Projects({ id }: { id?: string }) {
                           className="grid overflow-hidden"
                           style={{
                             gridTemplateRows: isHovered ? '1fr' : '0fr',
-                            transition: 'grid-template-rows 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+                            transition: 'grid-template-rows 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                           }}
                         >
                           <div className="overflow-hidden">
@@ -115,7 +115,7 @@ export default function Projects({ id }: { id?: string }) {
 
                   {/* ── Right panel ── */}
                   <div className="overflow-hidden">
-                    <div className="h-full p-8 md:p-10 border-l border-border bg-background/40 flex flex-col gap-6 min-w-[260px]">
+                    <div className="h-full p-6 md:p-8 border-l border-border bg-background/40 flex flex-col gap-5 min-w-[240px]">
                       {project.challenge && (
                         <div>
                           <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">
@@ -172,14 +172,15 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 md:py-16"
+      className="fixed inset-0 z-50 overflow-y-auto"
     >
+      <div className="flex min-h-full items-center justify-center px-4 py-8 md:py-16">
       <div
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        className="fixed inset-0 bg-background/80 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-3xl max-h-full overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
+      <div className="relative w-full max-w-3xl rounded-2xl border border-border bg-surface shadow-2xl">
         <button
           ref={closeBtnRef}
           type="button"
@@ -251,6 +252,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
