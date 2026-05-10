@@ -4,7 +4,13 @@
       "Bash(npm run *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Read(//d/Users/User/Pictures/Screenshots/**)",
+      "Read(//c/Users/User/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/subagent-driven-development/**)",
+      "Bash(npm install *)",
+      "Bash(git commit *)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(p.scripts\\)\")"
     ]
   }
 }
