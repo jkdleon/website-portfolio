@@ -54,37 +54,33 @@ export default function Projects({ id }: { id?: string }) {
                     : 'border-border'
                 }`}
               >
-                {/* Grid: left column expands/contracts to drive the "slide" */}
                 <div
                   className="grid overflow-hidden"
                   style={{
                     gridTemplateColumns: isHovered ? '55fr 45fr' : '1fr 0fr',
-                    transition: 'grid-template-columns 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    transition: isHovered
+                      ? 'grid-template-columns 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      : 'grid-template-columns 200ms ease-in',
                   }}
                 >
-                  {/* ── Left panel ── */}
                   <div className="flex flex-col min-h-[180px] p-6 md:p-8">
-
-                    {/* Category chip — top */}
                     <div>
                       {project.category && (
                         <span className="chip-mono">{project.category}</span>
                       )}
                     </div>
-
-                    {/* Title block — centered vertically in remaining space */}
                     <div className="flex-1 flex items-center">
                       <div className="w-full">
                         <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground leading-tight">
                           {project.title}
                         </h3>
-
-                        {/* Description: collapses to 0 height when not hovered */}
                         <div
                           className="grid overflow-hidden"
                           style={{
                             gridTemplateRows: isHovered ? '1fr' : '0fr',
-                            transition: 'grid-template-rows 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                            transition: isHovered
+                              ? 'grid-template-rows 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                              : 'grid-template-rows 200ms ease-in',
                           }}
                         >
                           <div className="overflow-hidden">
@@ -95,8 +91,6 @@ export default function Projects({ id }: { id?: string }) {
                         </div>
                       </div>
                     </div>
-
-                    {/* Explore — bottom, fades in on hover */}
                     <div
                       className={`flex items-center justify-end gap-2 font-mono text-[11px] tracking-widest uppercase transition-opacity duration-300 ${
                         isHovered ? 'opacity-100 text-accent' : 'opacity-0 text-subtle'
@@ -112,8 +106,6 @@ export default function Projects({ id }: { id?: string }) {
                       </span>
                     </div>
                   </div>
-
-                  {/* ── Right panel ── */}
                   <div className="overflow-hidden">
                     <div className="h-full p-6 md:p-8 border-l border-border bg-background/40 flex flex-col gap-5 min-w-[240px]">
                       {project.challenge && (
@@ -172,15 +164,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 md:py-16"
     >
-      <div className="flex min-h-full items-center justify-center px-4 py-8 md:py-16">
       <div
-        className="fixed inset-0 bg-background/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-3xl rounded-2xl border border-border bg-surface shadow-2xl">
+      <div className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
         <button
           ref={closeBtnRef}
           type="button"
@@ -252,7 +243,6 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </a>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
