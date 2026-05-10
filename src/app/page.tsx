@@ -3,7 +3,6 @@ import ScrollProgress from '@/components/ui/ScrollProgress';
 import Hero from '@/components/landing/Hero';
 import About from '@/components/landing/About';
 import Skills from '@/components/landing/Skills';
-import DataAnalytics from '@/components/landing/DataAnalytics';
 import Certifications from '@/components/landing/Certifications';
 import AcademicLog from '@/components/landing/AcademicLog';
 import Experience from '@/components/landing/Experience';
@@ -21,7 +20,6 @@ export default function Home() {
         <Hero id="overview" />
         <About />
         <Skills id="skills" />
-        <DataAnalytics />
         <Certifications />
         <AcademicLog id="education" />
         <Experience id="history" />

@@ -1,7 +1,7 @@
 import { PersonalInfo } from './types';
 
 export const personal: PersonalInfo = {
-  name: 'James Kyle De Leon',
+  name: 'James Kyle\nDe Leon',
   tagline: 'IT Executive & Network Engineer → Cloud & DevOps',
   openToRemote: 'Open to remote roles worldwide',
   email: 'jameskyle.dleon@gmail.com',

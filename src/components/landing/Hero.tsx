@@ -27,7 +27,7 @@ export default function Hero({ id }: { id?: string }) {
         </p>
 
         {/* Giant name */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-[1.0] text-foreground mb-8">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-[1.0] text-foreground mb-8 whitespace-pre-line">
           {personal.name}
         </h1>
 
@@ -40,14 +40,6 @@ export default function Hero({ id }: { id?: string }) {
             className="chip"
           >
             <span className="text-accent">↗</span> LinkedIn
-          </a>
-          <a
-            href={personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="chip"
-          >
-            <span className="text-accent">↗</span> GitHub
           </a>
           <span className="chip pointer-events-none">
             📍 {personal.openToRemote}

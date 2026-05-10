@@ -7,13 +7,9 @@ export default function Contact() {
     <SectionWrapper id="contact">
       <div className="max-w-6xl mx-auto px-5 text-center">
         <SectionLabel label="letsChat" />
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8">
           Working on something interesting?
         </h2>
-        <p className="text-muted max-w-lg mx-auto mb-8 leading-relaxed">
-          Cloud migration, network refresh, or anything that needs an operator&apos;s eye — my inbox
-          is open.
-        </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
