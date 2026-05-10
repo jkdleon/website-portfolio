@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "James Kyle De Leon | IT Executive & Network Engineer",
   description:
     "Portfolio of James Kyle De Leon — IT professional with 7+ years in enterprise networking, transitioning into Cloud & DevOps. Open to remote roles.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
