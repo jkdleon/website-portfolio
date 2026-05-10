@@ -54,14 +54,6 @@ export default function Hero({ id }: { id?: string }) {
           >
             Let&apos;s Chat
           </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full font-mono text-[11px] uppercase tracking-widest text-muted hover:border-border-strong hover:text-foreground transition-colors"
-          >
-            Resume
-          </a>
         </div>
 
         <ScrollPrompt />

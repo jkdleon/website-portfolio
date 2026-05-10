@@ -7,9 +7,6 @@ export default function Contact() {
     <SectionWrapper id="contact">
       <div className="max-w-6xl mx-auto px-5 text-center">
         <SectionLabel label="letsChat" />
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8">
-          Working on something interesting?
-        </h2>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
