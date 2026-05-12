@@ -53,7 +53,7 @@ export function ThreeBackground() {
 
     scene.add(new THREE.Points(geometry, material));
 
-    let animId: number;
+    let animId: number | undefined;
     let t = 0;
 
     function animate() {
@@ -68,7 +68,20 @@ export function ThreeBackground() {
       geometry.attributes.color.needsUpdate = true;
       renderer.render(scene, camera);
     }
-    animate();
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      for (let i = 0; i < COUNT; i++) {
+        const b = 0.08 + 0.42 * (0.5 + 0.5 * Math.sin(phases[i]));
+        colorBuf[i * 3]     = 0.22 * b;
+        colorBuf[i * 3 + 1] = 0.74 * b;
+        colorBuf[i * 3 + 2] = 0.97 * b;
+      }
+      geometry.attributes.color.needsUpdate = true;
+      renderer.render(scene, camera);
+    } else {
+      animate();
+    }
 
     function onResize() {
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -76,7 +89,7 @@ export function ThreeBackground() {
     window.addEventListener('resize', onResize);
 
     return () => {
-      cancelAnimationFrame(animId);
+      if (animId !== undefined) cancelAnimationFrame(animId);
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       geometry.dispose();

@@ -1,4 +1,3 @@
-import { all } from 'three/src/nodes/tsl/TSLBase.js';
 import { ExperienceEntry } from './types';
 
 export const experience: ExperienceEntry[] = [

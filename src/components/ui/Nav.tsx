@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { personal } from '@/lib/constants/personal';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const tabs = [
   { label: 'Overview', href: '#overview' },
@@ -64,8 +65,9 @@ export default function Nav() {
           })}
         </div>
 
-        {/* Spacer to balance the left anchor */}
-        <div className="hidden lg:block w-[80px]" />
+        <div className="hidden lg:flex justify-end w-[80px]">
+          <ThemeToggle />
+        </div>
 
         {/* Mobile: hamburger */}
         <div className="flex md:hidden items-center gap-3 ml-auto">
@@ -73,6 +75,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-foreground p-1"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <span className="block w-5 h-0.5 bg-current mb-1.5" />
             <span className="block w-5 h-0.5 bg-current mb-1.5" />
@@ -93,6 +96,9 @@ export default function Nav() {
               {tab.label}
             </a>
           ))}
+          <div className="py-2">
+            <ThemeToggle />
+          </div>
           <a
             href={`mailto:${personal.email}`}
             className="block py-2 font-mono text-xs uppercase tracking-widest text-accent"

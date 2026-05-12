@@ -14,7 +14,7 @@ export default function ScrollProgress() {
     }
     update();
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', update, { passive: true });
     return () => {
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);

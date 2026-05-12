@@ -232,16 +232,18 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </p>
             </div>
           )}
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={project.caseStudyHref ?? project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase hover:opacity-90 transition-opacity"
-            >
-              {project.linkLabel} →
-            </a>
-          </div>
+          {(project.caseStudyHref ?? project.link) && (
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={project.caseStudyHref ?? project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase hover:opacity-90 transition-opacity"
+              >
+                {project.linkLabel} →
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>

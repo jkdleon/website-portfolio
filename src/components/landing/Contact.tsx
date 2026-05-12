@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <SectionWrapper id="contact">
       <div className="max-w-6xl mx-auto px-5 text-center">
-        <SectionLabel label="letsChat" />
+        <SectionLabel label="let's chat" />
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a

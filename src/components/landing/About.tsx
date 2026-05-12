@@ -6,6 +6,7 @@ import { certifications } from '@/lib/constants/certifications';
 import { skills } from '@/lib/constants/skills';
 
 const totalSkills = skills.reduce((sum, cat) => sum + cat.skills.length, 0);
+const totalRoles = experience.reduce((sum, item) => sum + item.roles.length, 0);
 
 export default function About() {
   return (
@@ -18,7 +19,7 @@ export default function About() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard value={7} suffix="+" label="Years Experience" />
-          <StatCard value={experience.length} suffix="" label="Roles Held" />
+          <StatCard value={totalRoles} suffix="" label="Roles Held" />
           <StatCard value={certifications.length} suffix="" label="Certifications" />
           <StatCard value={totalSkills} suffix="+" label="Skills" />
         </div>
