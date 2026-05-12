@@ -45,6 +45,8 @@ next-env.d.ts
 CLAUDE.md
 CLAUDE.MD
 AGENTS.md
+.agents/
+.codex/
 .superpowers/
 docs/superpowers/
 tasks/
