@@ -15,7 +15,18 @@ export function ThreeBackground() {
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    const testCanvas = document.createElement('canvas');
+    const hasWebGL = Boolean(
+      testCanvas.getContext('webgl2') ?? testCanvas.getContext('webgl')
+    );
+    if (!hasWebGL) return;
+
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    } catch {
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);

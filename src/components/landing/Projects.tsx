@@ -65,10 +65,12 @@ export default function Projects({ id }: { id?: string }) {
                 <div
                   className="grid overflow-hidden"
                   style={{
-                    gridTemplateColumns: isHovered ? '55fr 45fr' : '1fr 0fr',
+                    gridTemplateColumns: isHovered
+                      ? 'minmax(0, 55fr) minmax(min(280px, 45vw), 45fr)'
+                      : 'minmax(0, 1fr) minmax(0, 0fr)',
                     transition: isHovered
                       ? 'grid-template-columns 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                      : 'grid-template-columns 200ms ease-in',
+                      : 'grid-template-columns 120ms ease-in',
                   }}
                 >
                   <div className="flex flex-col min-h-[300px] p-6 md:p-10">
@@ -114,8 +116,12 @@ export default function Projects({ id }: { id?: string }) {
                       </span>
                     </div>
                   </div>
-                  <div className="overflow-hidden">
-                    <div className="h-full p-6 md:p-10 border-l border-border bg-background/35 flex flex-col gap-6 min-w-[280px]">
+                  <div
+                    className={`overflow-hidden transition-opacity ${
+                      isHovered ? 'opacity-100 duration-300' : 'opacity-0 duration-75'
+                    }`}
+                  >
+                    <div className="h-full min-w-0 p-6 md:p-10 border-l border-border bg-background/35 flex flex-col gap-6">
                       {project.challenge && (
                         <div>
                           <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
