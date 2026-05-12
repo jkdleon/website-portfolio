@@ -28,15 +28,23 @@ export default function Projects({ id }: { id?: string }) {
   return (
     <SectionWrapper id={id ?? 'projects'}>
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel label="selected work" />
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
+        <div
+          className={`transition-opacity duration-300 ${
+            hoverIndex !== null ? 'opacity-35' : 'opacity-100'
+          }`}
+        >
+          <div className="flex justify-center">
+            <SectionLabel label="selected work" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-center">
           Projects
-        </h2>
-        <p className="text-muted text-sm md:text-base mt-3 mb-12 max-w-2xl">
-          A few projects that highlight how I approach problems end-to-end.
-        </p>
+          </h2>
+          <p className="text-muted text-sm md:text-base mt-4 mb-14 max-w-3xl mx-auto text-center">
+            A few projects that highlight how I approach problems end-to-end.
+          </p>
+        </div>
 
-        <div className="space-y-6">
+        <div className="space-y-7 md:space-y-10">
           {projects.map((project, i) => {
             const isHovered = hoverIndex === i;
             return (
@@ -48,10 +56,10 @@ export default function Projects({ id }: { id?: string }) {
                 onMouseLeave={() => setHoverIndex(null)}
                 onFocus={() => setHoverIndex(i)}
                 onBlur={() => setHoverIndex(null)}
-                className={`block w-full text-left rounded-2xl border overflow-hidden transition-[border-color,box-shadow] duration-300 bg-surface/60 ${
+                className={`group block text-left rounded-3xl border overflow-hidden bg-surface/70 backdrop-blur-sm transition-[width,border-color,box-shadow,transform] duration-500 ease-out ${
                   isHovered
-                    ? 'border-accent/40 shadow-[0_24px_60px_-24px_rgba(56,189,248,0.25)]'
-                    : 'border-border'
+                    ? 'w-full border-accent shadow-[0_28px_90px_-36px_rgba(56,189,248,0.55)] md:-translate-x-6'
+                    : 'w-full md:w-[82%] border-border'
                 }`}
               >
                 <div
@@ -63,7 +71,7 @@ export default function Projects({ id }: { id?: string }) {
                       : 'grid-template-columns 200ms ease-in',
                   }}
                 >
-                  <div className="flex flex-col min-h-[180px] p-6 md:p-8">
+                  <div className="flex flex-col min-h-[300px] p-6 md:p-10">
                     <div>
                       {project.category && (
                         <span className="chip-mono">{project.category}</span>
@@ -71,7 +79,7 @@ export default function Projects({ id }: { id?: string }) {
                     </div>
                     <div className="flex-1 flex items-center">
                       <div className="w-full">
-                        <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground leading-tight">
+                        <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground leading-tight max-w-xl">
                           {project.title}
                         </h3>
                         <div
@@ -92,8 +100,8 @@ export default function Projects({ id }: { id?: string }) {
                       </div>
                     </div>
                     <div
-                      className={`flex items-center justify-end gap-2 font-mono text-[11px] tracking-widest uppercase transition-opacity duration-300 ${
-                        isHovered ? 'opacity-100 text-accent' : 'opacity-0 text-subtle'
+                      className={`flex items-center justify-end gap-3 font-mono text-[11px] tracking-widest uppercase transition-opacity duration-300 ${
+                        isHovered ? 'opacity-100 text-accent' : 'opacity-100 text-subtle'
                       }`}
                     >
                       Explore
@@ -107,20 +115,20 @@ export default function Projects({ id }: { id?: string }) {
                     </div>
                   </div>
                   <div className="overflow-hidden">
-                    <div className="h-full p-6 md:p-8 border-l border-border bg-background/40 flex flex-col gap-5 min-w-[240px]">
+                    <div className="h-full p-6 md:p-10 border-l border-border bg-background/35 flex flex-col gap-6 min-w-[280px]">
                       {project.challenge && (
                         <div>
-                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">
+                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
                             ◇ Challenge
                           </p>
-                          <p className="text-muted text-sm leading-relaxed">
+                          <p className="text-muted text-sm md:text-base leading-relaxed">
                             {project.challenge}
                           </p>
                         </div>
                       )}
                       {project.tools.length > 0 && (
                         <div>
-                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
+                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
                             ◇ Tech Stack
                           </p>
                           <div className="flex flex-wrap gap-2">
@@ -133,7 +141,7 @@ export default function Projects({ id }: { id?: string }) {
                         </div>
                       )}
                       <div className="mt-auto">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase">
+                        <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase">
                           View Case Study →
                         </span>
                       </div>
@@ -171,7 +179,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
+      <div className="relative w-full max-w-2xl max-h-[78vh] overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
         <button
           ref={closeBtnRef}
           type="button"
@@ -181,16 +189,16 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         >
           ×
         </button>
-        <div className="p-8 md:p-12">
+        <div className="p-6 md:p-9">
           {project.category && (
             <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 text-center">
               ◇ {project.category}
             </p>
           )}
-          <h3 id="modal-title" className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground text-center mb-10">
+          <h3 id="modal-title" className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground text-center mb-8">
             {project.title}
           </h3>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-10">
+          <div className="grid md:grid-cols-2 gap-7 md:gap-9 mb-8">
             {project.challenge && (
               <div>
                 <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
