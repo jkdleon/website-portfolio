@@ -7,16 +7,19 @@ import { projects } from '@/lib/constants/projects';
 import { Project } from '@/lib/constants/types';
 
 export default function Projects({ id }: { id?: string }) {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   useEffect(() => {
     if (!activeProject) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setActiveProject(null);
     };
+
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
@@ -25,138 +28,166 @@ export default function Projects({ id }: { id?: string }) {
 
   if (projects.length === 0) return null;
 
+  const activePreview = projects[activeIndex] ?? projects[0];
+
   return (
-    <SectionWrapper id={id ?? 'projects'}>
+    <SectionWrapper id={id ?? 'projects'} className="grid-bg">
       <div className="max-w-6xl mx-auto px-5">
-        <div
-          className={`transition-opacity duration-300 ${
-            hoverIndex !== null ? 'opacity-35' : 'opacity-100'
-          }`}
-        >
-          <div className="flex justify-center">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:items-end mb-12 md:mb-16">
+          <div>
             <SectionLabel label="selected work" />
+            <h2 className="text-5xl md:text-7xl font-semibold tracking-tight text-foreground leading-none">
+              Projects
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-center">
-          Projects
-          </h2>
-          <p className="text-muted text-sm md:text-base mt-4 mb-14 max-w-3xl mx-auto text-center">
-            A few projects that highlight how I approach problems end-to-end.
+          <p className="text-muted text-sm md:text-base leading-relaxed max-w-sm md:justify-self-end">
+            A compact project log with quick hover previews for the work behind each build.
           </p>
         </div>
 
-        <div className="space-y-7 md:space-y-10">
-          {projects.map((project, i) => {
-            const isHovered = hoverIndex === i;
-            return (
-              <button
-                key={project.title}
-                type="button"
-                onClick={() => setActiveProject(project)}
-                onMouseEnter={() => setHoverIndex(i)}
-                onMouseLeave={() => setHoverIndex(null)}
-                onFocus={() => setHoverIndex(i)}
-                onBlur={() => setHoverIndex(null)}
-                className={`group block text-left rounded-3xl border overflow-hidden bg-surface/70 backdrop-blur-sm ${
-                  isHovered
-                    ? 'w-full border-accent shadow-[0_28px_90px_-36px_rgba(56,189,248,0.55)] transition-[width,border-color,box-shadow,transform] duration-300 ease-out md:-translate-x-6'
-                    : 'w-full md:w-[82%] border-border transition-[border-color,box-shadow] duration-150'
-                }`}
-              >
-                <div
-                  className="grid overflow-hidden"
-                  style={{
-                    gridTemplateColumns: isHovered
-                      ? 'minmax(0, 55fr) minmax(min(280px, 45vw), 45fr)'
-                      : 'minmax(0, 1fr) minmax(0, 0fr)',
-                    transition: isHovered
-                      ? 'grid-template-columns 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                      : 'none',
-                  }}
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+          <div className="border-t border-border-strong">
+            {projects.map((project, index) => {
+              const isActive = activeIndex === index;
+              const projectNumber = String(index + 1).padStart(2, '0');
+              const href = project.caseStudyHref ?? project.link;
+
+              return (
+                <article
+                  key={project.title}
+                  onPointerEnter={() => setActiveIndex(index)}
+                  onFocusCapture={() => setActiveIndex(index)}
+                  className="group border-b border-border transition-colors duration-150 hover:border-accent/60 focus-within:border-accent/60"
                 >
-                  <div className="flex flex-col min-h-[300px] p-6 md:p-10">
-                    <div>
+                  <button
+                    type="button"
+                    onClick={() => setActiveProject(project)}
+                    aria-expanded={isActive}
+                    aria-controls={`project-peek-${index}`}
+                    className="w-full text-left grid gap-5 py-7 md:grid-cols-[4rem_minmax(0,1fr)_7.5rem] md:gap-6"
+                  >
+                    <span className="gutter-num pt-1">{projectNumber}</span>
+
+                    <span className="min-w-0">
                       {project.category && (
-                        <span className="chip-mono">{project.category}</span>
+                        <span className="chip-mono mb-4">{project.category}</span>
                       )}
-                    </div>
-                    <div className="flex-1 flex items-center">
-                      <div className="w-full">
-                        <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground leading-tight max-w-xl">
-                          {project.title}
-                        </h3>
-                        <div
-                          className="grid overflow-hidden"
-                          style={{
-                            gridTemplateRows: isHovered ? '1fr' : '0fr',
-                            transition: isHovered
-                              ? 'grid-template-rows 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                              : 'none',
-                          }}
-                        >
-                          <div className="overflow-hidden">
-                            <p className="mt-3 text-muted text-sm md:text-base leading-relaxed max-w-md">
-                              {project.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className={`flex items-center justify-end gap-3 font-mono text-[11px] tracking-widest uppercase transition-opacity duration-300 ${
-                        isHovered ? 'opacity-100 text-accent' : 'opacity-100 text-subtle'
+                      <span
+                        className={`block text-2xl md:text-4xl font-semibold tracking-tight leading-tight transition-colors duration-150 ${
+                          isActive ? 'text-accent' : 'text-foreground'
+                        }`}
+                      >
+                        {project.title}
+                      </span>
+                      <span className="block mt-3 text-muted text-sm md:text-base leading-relaxed max-w-2xl">
+                        {project.description}
+                      </span>
+                    </span>
+
+                    <span
+                      className={`hidden md:flex items-center justify-end gap-2 self-center font-mono text-[11px] tracking-widest uppercase transition-all duration-150 ${
+                        isActive ? 'translate-x-1 text-accent' : 'text-subtle'
                       }`}
                     >
                       Explore
-                      <span
-                        className={`inline-block transition-transform duration-300 ${
-                          isHovered ? 'translate-x-1' : ''
-                        }`}
-                      >
-                        →
-                      </span>
-                    </div>
-                  </div>
+                      <span aria-hidden="true">-&gt;</span>
+                    </span>
+                  </button>
+
                   <div
-                    className={`overflow-hidden transition-opacity ${
-                      isHovered ? 'opacity-100 duration-300' : 'opacity-0 duration-0'
+                    id={`project-peek-${index}`}
+                    aria-hidden={!isActive}
+                    className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-within:grid-rows-[1fr] group-focus-within:opacity-100 ${
+                      isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                     }`}
                   >
-                    <div className="h-full min-w-0 p-6 md:p-10 border-l border-border bg-background/35 flex flex-col gap-6">
-                      {project.challenge && (
-                        <div>
-                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
-                            ◇ Challenge
-                          </p>
-                          <p className="text-muted text-sm md:text-base leading-relaxed">
-                            {project.challenge}
-                          </p>
-                        </div>
-                      )}
-                      {project.tools.length > 0 && (
-                        <div>
-                          <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
-                            ◇ Tech Stack
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tools.map((tool) => (
-                              <span key={tool} className="chip pointer-events-none">
-                                {tool}
-                              </span>
-                            ))}
+                    <div className="overflow-hidden">
+                      <div className="pb-8 md:ml-[5.5rem]">
+                        <div className="grid gap-5 rounded-lg border border-border bg-surface/70 p-5 backdrop-blur-sm md:grid-cols-[minmax(0,1fr)_auto]">
+                          <div>
+                            {project.challenge && (
+                              <>
+                                <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">
+                                  Quick Brief
+                                </p>
+                                <p className="text-muted text-sm leading-relaxed max-w-2xl">
+                                  {project.challenge}
+                                </p>
+                              </>
+                            )}
                           </div>
+
+                          {project.tools.length > 0 && (
+                            <div className="md:max-w-[17rem]">
+                              <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">
+                                Tech Stack
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {project.tools.slice(0, 5).map((tool) => (
+                                  <span key={tool} className="chip pointer-events-none">
+                                    {tool}
+                                  </span>
+                                ))}
+                                {project.tools.length > 5 && (
+                                  <span className="chip pointer-events-none">
+                                    +{project.tools.length - 5}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          {href && (
+                            <span className="md:col-span-2 font-mono text-[11px] tracking-widest uppercase text-subtle">
+                              Click to read the case study
+                            </span>
+                          )}
                         </div>
-                      )}
-                      <div className="mt-auto">
-                        <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase">
-                          View Case Study →
-                        </span>
                       </div>
                     </div>
                   </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <aside className="lg:sticky lg:top-24 rounded-lg border border-border-strong bg-surface/85 overflow-hidden shadow-[0_24px_90px_-50px_rgba(56,189,248,0.75)] backdrop-blur-sm">
+            <div className="flex items-center justify-between border-b border-border px-5 py-4">
+              <p className="font-mono text-[11px] text-muted tracking-widest uppercase">
+                Case File
+              </p>
+              <p className="gutter-num">
+                {String(activeIndex + 1).padStart(2, '0')} /{' '}
+                {String(projects.length).padStart(2, '0')}
+              </p>
+            </div>
+            <div className="p-5 md:p-6">
+              {activePreview.category && (
+                <span className="chip-mono mb-5">{activePreview.category}</span>
+              )}
+              <h3 className="text-2xl font-semibold tracking-tight text-foreground leading-tight mb-4">
+                {activePreview.title}
+              </h3>
+              <p className="text-muted text-sm leading-relaxed mb-6">
+                {activePreview.solution ?? activePreview.description}
+              </p>
+              {activePreview.businessImpact && (
+                <div className="border-l-2 border-accent pl-4 mb-6">
+                  <p className="text-foreground text-sm leading-relaxed">
+                    {activePreview.businessImpact}
+                  </p>
                 </div>
+              )}
+              <button
+                type="button"
+                onClick={() => setActiveProject(activePreview)}
+                className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent-soft px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase text-accent transition-colors hover:bg-accent hover:text-background"
+              >
+                View Case Study
+                <span aria-hidden="true">-&gt;</span>
               </button>
-            );
-          })}
+            </div>
+          </aside>
         </div>
       </div>
 
@@ -169,6 +200,8 @@ export default function Projects({ id }: { id?: string }) {
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const href = project.caseStudyHref ?? project.link;
+
   useEffect(() => {
     closeBtnRef.current?.focus();
   }, []);
@@ -185,7 +218,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative w-full max-w-2xl max-h-[78vh] overflow-y-auto rounded-2xl border border-border bg-surface shadow-2xl">
+      <div className="relative w-full max-w-3xl max-h-[82vh] overflow-y-auto rounded-lg border border-border bg-surface shadow-2xl">
         <button
           ref={closeBtnRef}
           type="button"
@@ -193,17 +226,22 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           aria-label={`Close ${project.title} details`}
           className="absolute top-5 right-5 w-8 h-8 inline-flex items-center justify-center rounded-full text-subtle hover:text-foreground hover:bg-border/40 transition-colors"
         >
-          ×
+          X
         </button>
+
         <div className="p-6 md:p-9">
           {project.category && (
-            <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 text-center">
-              ◇ {project.category}
+            <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4">
+              {project.category}
             </p>
           )}
-          <h3 id="modal-title" className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground text-center mb-8">
+          <h3
+            id="modal-title"
+            className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8 pr-10"
+          >
             {project.title}
           </h3>
+
           <div className="grid md:grid-cols-2 gap-7 md:gap-9 mb-8">
             {project.challenge && (
               <div>
@@ -222,8 +260,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </div>
             )}
           </div>
+
           {project.tools.length > 0 && (
-            <div className="mb-10">
+            <div className="mb-8">
               <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
                 Tools &amp; Skills
               </p>
@@ -236,27 +275,28 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </div>
             </div>
           )}
+
           {project.businessImpact && (
-            <div className="rounded-xl border border-border bg-background/60 p-6 mb-8">
+            <div className="rounded-lg border border-border bg-background/60 p-6 mb-8">
               <p className="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">
-                ◇ Impact
+                Impact
               </p>
               <p className="text-foreground text-base leading-relaxed">
                 {project.businessImpact}
               </p>
             </div>
           )}
-          {(project.caseStudyHref ?? project.link) && (
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={project.caseStudyHref ?? project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-background font-mono text-[11px] tracking-widest uppercase hover:opacity-90 transition-opacity"
-              >
-                {project.linkLabel} →
-              </a>
-            </div>
+
+          {href && (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-[11px] tracking-widest uppercase text-background transition-opacity hover:opacity-90"
+            >
+              {project.linkLabel || 'View Project'}
+              <span aria-hidden="true">-&gt;</span>
+            </a>
           )}
         </div>
       </div>
