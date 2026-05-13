@@ -4,7 +4,7 @@ Personal portfolio for James Kyle De Leon, an IT Executive and Network Engineer 
 
 The site is a single-page Next.js app with typed content files, a dark-first interface, project case-study cards, and a lightweight animated background. It is built to work like a living resume: update the data in `src/lib/constants/`, and the page follows.
 
-Live site: [website-portfolio-three-zeta.vercel.app](https://website-portfolio-three-zeta.vercel.app)
+Live site: [jkdeleon.net](https://jkdeleon.net)
 
 Repository: [github.com/jkdleon/website-portfolio](https://github.com/jkdleon/website-portfolio)
 

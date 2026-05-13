@@ -56,10 +56,10 @@ export default function Projects({ id }: { id?: string }) {
                 onMouseLeave={() => setHoverIndex(null)}
                 onFocus={() => setHoverIndex(i)}
                 onBlur={() => setHoverIndex(null)}
-                className={`group block text-left rounded-3xl border overflow-hidden bg-surface/70 backdrop-blur-sm transition-[width,border-color,box-shadow,transform] duration-500 ease-out ${
+                className={`group block text-left rounded-3xl border overflow-hidden bg-surface/70 backdrop-blur-sm ${
                   isHovered
-                    ? 'w-full border-accent shadow-[0_28px_90px_-36px_rgba(56,189,248,0.55)] md:-translate-x-6'
-                    : 'w-full md:w-[82%] border-border'
+                    ? 'w-full border-accent shadow-[0_28px_90px_-36px_rgba(56,189,248,0.55)] transition-[width,border-color,box-shadow,transform] duration-300 ease-out md:-translate-x-6'
+                    : 'w-full md:w-[82%] border-border transition-[border-color,box-shadow] duration-150'
                 }`}
               >
                 <div
@@ -70,7 +70,7 @@ export default function Projects({ id }: { id?: string }) {
                       : 'minmax(0, 1fr) minmax(0, 0fr)',
                     transition: isHovered
                       ? 'grid-template-columns 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                      : 'grid-template-columns 120ms ease-in',
+                      : 'none',
                   }}
                 >
                   <div className="flex flex-col min-h-[300px] p-6 md:p-10">
@@ -90,7 +90,7 @@ export default function Projects({ id }: { id?: string }) {
                             gridTemplateRows: isHovered ? '1fr' : '0fr',
                             transition: isHovered
                               ? 'grid-template-rows 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                              : 'grid-template-rows 200ms ease-in',
+                              : 'none',
                           }}
                         >
                           <div className="overflow-hidden">
@@ -118,7 +118,7 @@ export default function Projects({ id }: { id?: string }) {
                   </div>
                   <div
                     className={`overflow-hidden transition-opacity ${
-                      isHovered ? 'opacity-100 duration-300' : 'opacity-0 duration-75'
+                      isHovered ? 'opacity-100 duration-300' : 'opacity-0 duration-0'
                     }`}
                   >
                     <div className="h-full min-w-0 p-6 md:p-10 border-l border-border bg-background/35 flex flex-col gap-6">
