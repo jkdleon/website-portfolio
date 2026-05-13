@@ -7,7 +7,7 @@ import { projects } from '@/lib/constants/projects';
 import { Project } from '@/lib/constants/types';
 
 export default function Projects({ id }: { id?: string }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   useEffect(() => {
@@ -28,24 +28,30 @@ export default function Projects({ id }: { id?: string }) {
 
   if (projects.length === 0) return null;
 
-  const activePreview = projects[activeIndex] ?? projects[0];
+  const activePreview = projects[activeIndex ?? 0] ?? projects[0];
+  const hasPreviewIntent = activeIndex !== null;
 
   return (
-    <SectionWrapper id={id ?? 'projects'} className="grid-bg">
+    <SectionWrapper id={id ?? 'projects'}>
       <div className="max-w-6xl mx-auto px-5">
-        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:items-end mb-12 md:mb-16">
+        <div className="mb-12 md:mb-16">
           <div>
             <SectionLabel label="selected work" />
             <h2 className="text-5xl md:text-7xl font-semibold tracking-tight text-foreground leading-none">
               Projects
             </h2>
           </div>
-          <p className="text-muted text-sm md:text-base leading-relaxed max-w-sm md:justify-self-end">
-            A compact project log with quick hover previews for the work behind each build.
-          </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div
+          onPointerLeave={() => setActiveIndex(null)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setActiveIndex(null);
+            }
+          }}
+          className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start"
+        >
           <div className="border-t border-border-strong">
             {projects.map((project, index) => {
               const isActive = activeIndex === index;
@@ -73,7 +79,7 @@ export default function Projects({ id }: { id?: string }) {
                         <span className="chip-mono mb-4">{project.category}</span>
                       )}
                       <span
-                        className={`block text-2xl md:text-4xl font-semibold tracking-tight leading-tight transition-colors duration-150 ${
+                        className={`block text-2xl md:text-4xl font-semibold tracking-tight leading-tight transition-colors duration-150 group-hover:text-accent group-focus-within:text-accent ${
                           isActive ? 'text-accent' : 'text-foreground'
                         }`}
                       >
@@ -85,7 +91,7 @@ export default function Projects({ id }: { id?: string }) {
                     </span>
 
                     <span
-                      className={`hidden md:flex items-center justify-end gap-2 self-center font-mono text-[11px] tracking-widest uppercase transition-all duration-150 ${
+                      className={`hidden md:flex items-center justify-end gap-2 self-center font-mono text-[11px] tracking-widest uppercase transition-all duration-150 group-hover:translate-x-1 group-hover:text-accent group-focus-within:translate-x-1 group-focus-within:text-accent ${
                         isActive ? 'translate-x-1 text-accent' : 'text-subtle'
                       }`}
                     >
@@ -151,27 +157,34 @@ export default function Projects({ id }: { id?: string }) {
             })}
           </div>
 
-          <aside className="lg:sticky lg:top-24 rounded-lg border border-border-strong bg-surface/85 overflow-hidden shadow-[0_24px_90px_-50px_rgba(56,189,248,0.75)] backdrop-blur-sm">
+          <aside
+            aria-hidden={!hasPreviewIntent}
+            className={`lg:sticky lg:top-24 rounded-lg border border-border-strong bg-surface/85 overflow-hidden shadow-[0_24px_90px_-50px_rgba(56,189,248,0.75)] backdrop-blur-sm transition-all duration-300 ease-out ${
+              hasPreviewIntent
+                ? 'opacity-100 translate-y-0 pointer-events-auto'
+                : 'opacity-0 translate-y-2 pointer-events-none'
+            }`}
+          >
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
               <p className="font-mono text-[11px] text-muted tracking-widest uppercase">
                 Case File
               </p>
               <p className="gutter-num">
-                {String(activeIndex + 1).padStart(2, '0')} /{' '}
+                {String((activeIndex ?? 0) + 1).padStart(2, '0')} /{' '}
                 {String(projects.length).padStart(2, '0')}
               </p>
             </div>
             <div className="p-5 md:p-6">
-              {activePreview.category && (
+              {activePreview?.category && (
                 <span className="chip-mono mb-5">{activePreview.category}</span>
               )}
               <h3 className="text-2xl font-semibold tracking-tight text-foreground leading-tight mb-4">
-                {activePreview.title}
+                {activePreview?.title}
               </h3>
               <p className="text-muted text-sm leading-relaxed mb-6">
-                {activePreview.solution ?? activePreview.description}
+                {activePreview?.solution ?? activePreview?.description}
               </p>
-              {activePreview.businessImpact && (
+              {activePreview?.businessImpact && (
                 <div className="border-l-2 border-accent pl-4 mb-6">
                   <p className="text-foreground text-sm leading-relaxed">
                     {activePreview.businessImpact}
@@ -180,6 +193,7 @@ export default function Projects({ id }: { id?: string }) {
               )}
               <button
                 type="button"
+                tabIndex={hasPreviewIntent ? 0 : -1}
                 onClick={() => setActiveProject(activePreview)}
                 className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent-soft px-4 py-2.5 font-mono text-[11px] tracking-widest uppercase text-accent transition-colors hover:bg-accent hover:text-background"
               >
