@@ -9,9 +9,11 @@ import { stats } from '@/lib/constants/stats';
 
 export default function Hero({ id }: { id?: string }) {
   return (
-    <section id={id ?? 'overview'} className="relative scroll-mt-14 overflow-hidden">
-      <div className="hero-grid absolute inset-0" aria-hidden="true" />
-      <NodeMesh />
+    <section id={id ?? 'overview'} className="relative scroll-mt-14">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="hero-grid absolute inset-0" />
+        <NodeMesh />
+      </div>
 
       <div className="relative mx-auto max-w-content px-5 pb-12 pt-14 md:pb-16 md:pt-20">
         <div className="grid items-center gap-6 md:grid-cols-[auto_minmax(0,1fr)_auto] md:gap-8">
