@@ -218,3 +218,14 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
   }
 }
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+/* @utility (not @layer) so variants like motion-safe: apply to it. */
+@utility animate-dash {
+  animation: dash 1.6s linear infinite;
+}
