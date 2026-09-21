@@ -10,6 +10,6 @@ describe('stats', () => {
 
   it('derives the certification count from the certifications list', () => {
     const certs = stats.find((s) => s.label === 'certifications');
-    expect(certs?.value).toBe(certifications.length);
+    expect(certs?.value).toBe(certifications.filter((c) => !c.expired).length);
   });
 });

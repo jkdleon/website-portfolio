@@ -12,7 +12,7 @@ export function Credentials({ id }: { id?: string }) {
 
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr] lg:gap-14">
           <div>
-            <MonoLabel as="h3" className="mb-4">
+            <MonoLabel as="h3" tone="accent" className="mb-4">
               certifications
             </MonoLabel>
             <ul className="divide-y divide-line border-y border-line">
@@ -36,7 +36,7 @@ export function Credentials({ id }: { id?: string }) {
           </div>
 
           <div>
-            <MonoLabel as="h3" className="mb-4">
+            <MonoLabel as="h3" tone="accent" className="mb-4">
               education
             </MonoLabel>
             <ul className="divide-y divide-line border-y border-line">

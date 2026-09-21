@@ -17,7 +17,7 @@ Repository: [github.com/jkdleon/website-portfolio](https://github.com/jkdleon/we
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
 | 3D/background | Three.js |
-| Fonts | Syne and Manrope through `next/font/google` |
+| Fonts | Syne, Manrope and JetBrains Mono through `next/font/google` |
 | Deployment | Vercel |
 
 ## What is included
@@ -33,7 +33,7 @@ Repository: [github.com/jkdleon/website-portfolio](https://github.com/jkdleon/we
 ```text
 src/
   app/
-    layout.tsx          # Root layout, fonts, metadata, theme bootstrap, background
+    layout.tsx          # Root layout, fonts, metadata
     page.tsx            # One-page landing route composition
     globals.css         # Tailwind v4 theme tokens and shared utilities
   components/
@@ -57,7 +57,7 @@ Most updates happen in `src/lib/constants/`.
 
 | File | Controls |
 | --- | --- |
-| `personal.ts` | Name, tagline, email, social links, short bio |
+| `personal.ts` | Name, role, headline, status, currently, CV link, email, social links, short bio |
 | `skills.ts` | Skill groups and individual skill labels |
 | `experience.ts` | Work history entries |
 | `education.ts` | Education and academic log entries |
@@ -106,6 +106,7 @@ Recommended pre-push checklist:
 
 ```bash
 npm run lint
+npm test
 npm run build
 ```
 

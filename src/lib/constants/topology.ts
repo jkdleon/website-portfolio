@@ -38,7 +38,7 @@ export const topologyNodes: TopologyNode[] = [
     label: 'Doha',
     shortLabel: 'DOH',
     kind: 'site',
-    years: '2025 –',
+    years: '2025 – 2026',
     note: 'Snoonu · IT Executive (Infrastructure & Operations)',
     x: 410,
     y: 92,

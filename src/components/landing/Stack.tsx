@@ -11,7 +11,7 @@ export function Stack({ id }: { id?: string }) {
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
           {skills.map((group) => (
             <div key={group.name} className="bg-panel p-5">
-              <MonoLabel as="p" tone="accent" className="mb-4">
+              <MonoLabel as="h3" tone="accent" className="mb-4">
                 {group.name}
               </MonoLabel>
               <ul className="flex flex-wrap gap-1.5">
