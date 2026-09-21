@@ -6,10 +6,6 @@ export const projects: Project[] = [
     category: 'Cloud Migration · Snoonu',
     description:
       'Production attendance platform — 15 biometric terminals serving 500+ staff — migrated from on-premises to Google Cloud with zero downtime.',
-    challenge:
-      'The attendance system every employee clocks into ran on an on-premises server. It had to move to Google Cloud without interrupting attendance capture, and the work was assigned alongside daily operations.',
-    solution:
-      'Planned and executed the migration of the ZKBioTime server to Google Cloud and re-pointed all 15 biometric terminals to the new environment, with no loss of attendance data and no downtime for staff.',
     year: '2025',
     status: { label: 'zero downtime', tone: 'success' },
     narrative:
@@ -25,10 +21,6 @@ export const projects: Project[] = [
     category: 'Infrastructure as Code · Personal',
     description:
       'Terraform stack for a static site on AWS — private S3 origin, CloudFront with Origin Access Control, ACM and Route 53 — with deploy scripts and GitHub Actions CI. Authored; AWS deployment pending.',
-    challenge:
-      'Define a complete static-site hosting stack as code rather than by hand: a private S3 bucket as the origin, CloudFront in front of it with Origin Access Control, TLS via ACM and DNS in Route 53.',
-    solution:
-      'Wrote the Terraform for every component, Bash and PowerShell deployment scripts, and a GitHub Actions CI pipeline with branch protection on the repository.',
     year: '2026',
     status: { label: 'authored · deployment pending', tone: 'pending' },
     narrative:
@@ -53,10 +45,6 @@ export const projects: Project[] = [
     category: 'Network Engineering · New Oriental Club88',
     description:
       'Replaced the Cisco core routers at the Hong Kong offshore edge and the Cisco core switches in the Philippines — a 30-minute change window with zero client downtime.',
-    challenge:
-      'The core routers at the Hong Kong edge and the core switches in the Philippines carried traffic for 50–60 client companies over the international link. Both had to be replaced without taking clients offline.',
-    solution:
-      'Documented configurations and dependencies, wrote the cutover with a rehearsed rollback to the old hardware, and failed client traffic over to local ISPs before touching the core. Executed in a 30-minute low-traffic window with the NOC team running from a checklist.',
     status: { label: 'zero client downtime', tone: 'success' },
     narrative:
       'The core routers at our Hong Kong edge and the core switches in the Philippines carried every client’s traffic over the international link — and both needed replacing. I documented the configurations and dependencies, wrote the cutover with a rehearsed rollback to the old hardware, and failed client traffic over to local ISPs before we touched the core, so clients stayed up regardless of how the change went. We ran it in a 30-minute low-traffic window from a checklist: one engineer executing, one on Zabbix and Cacti, me verifying and acting as the single escalation point for the vendor and the Hong Kong site.',
@@ -71,10 +59,6 @@ export const projects: Project[] = [
     category: 'Network Operations · New Oriental Club88',
     description:
       'Built and ran the network operations team’s tooling on self-hosted Ubuntu servers: Zabbix, FastNetMon, Oxidized, NetBox and Snipe-IT.',
-    challenge:
-      'The NOC needed monitoring, DDoS detection, configuration backup, an IPAM/DCIM source of truth and asset tracking — on a budget, after a commercial DDoS subscription had expired.',
-    solution:
-      'Deployed and operated Zabbix (network monitoring), FastNetMon (DDoS detection, replacing the expired Blue Coat subscription), Oxidized (device configuration backup and versioning — LibreNMS as the inventory feed, later replaced by a CSV feed after latency issues), NetBox (IPAM/DCIM) and Snipe-IT (asset management with bi-weekly backups; also trialled on AWS EC2).',
     year: '2021 – 2025',
     status: { label: 'ran in production', tone: 'success' },
     narrative:
@@ -90,10 +74,6 @@ export const projects: Project[] = [
     category: 'Cloud Evaluation · Snoonu',
     description:
       'Deployed Zabbix in the cloud under a cloud-first policy, tested it against the Pakistan office over an IPsec VPN, costed it, and recommended an on-premises server instead.',
-    challenge:
-      'Company policy favoured cloud-first. The question was whether cloud-hosted monitoring of remote sites over site-to-site VPN was actually the right call once running costs were counted.',
-    solution:
-      'Deployed Zabbix in the cloud and proved it against the Pakistan office over a site-to-site IPsec VPN, tracked the monthly running cost, and found it uneconomic. Recommended an on-premises server with only SNMP traffic crossing the VPN.',
     year: '2025',
     status: { label: 'report delivered', tone: 'neutral' },
     narrative:
@@ -108,10 +88,6 @@ export const projects: Project[] = [
     category: 'Service Management · Snoonu',
     description:
       'Solo project assessing the IT department’s processes against SLA and ITSM requirements, with an action plan to close the gaps.',
-    challenge:
-      'The department had no formal picture of where its incident, request and change handling fell short of SLA and ITSM expectations.',
-    solution:
-      'Assessed current processes against SLA/ITSM requirements, documented the gaps and produced the action plan.',
     year: '2025 – 2026',
     status: { label: '~90% at departure', tone: 'neutral' },
     narrative:
@@ -127,10 +103,6 @@ export const projects: Project[] = [
     category: 'IT Operations · Snoonu',
     description:
       'Requirements gathering, asset audit and bandwidth right-sizing across the Snoomart dark stores.',
-    challenge:
-      'Store managers reported slow connectivity and ageing equipment across the dark-store estate.',
-    solution:
-      'Gathered requirements with store managers, audited assets for replacement or upgrade, verified the reported slowness, and right-sized each store’s internet bandwidth.',
     year: '2025',
     status: { label: 'delivered', tone: 'success' },
     narrative:
@@ -144,10 +116,6 @@ export const projects: Project[] = [
     category: 'Web · Personal',
     description:
       'A dark-first single-page portfolio built with Next.js and Tailwind CSS v4 — the site you are looking at right now.',
-    challenge:
-      'I needed a portfolio that felt distinct from generic templates while staying fast, accessible, and easy to maintain.',
-    solution:
-      'Built a fully data-driven Next.js App Router site with Tailwind v4 design tokens, dark/light mode with FOUC prevention, scroll-fade animations, and modular landing components.',
     year: '2026',
     status: { label: 'live', tone: 'success' },
     narrative:

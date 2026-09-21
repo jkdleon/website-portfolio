@@ -5,9 +5,6 @@ export interface PersonalInfo {
   status: string;
   currently: string;
   cvHref: string;
-  // tagline and openToRemote are read by the old Hero; removed in the assembly task.
-  tagline: string;
-  openToRemote: string;
   email: string;
   github: string;
   linkedin: string;
@@ -59,11 +56,6 @@ export interface Project {
   businessImpact?: string;
   link: string;
   linkLabel: string;
-  // Read by the old Projects component; removed in the assembly task.
-  challenge?: string;
-  solution?: string;
-  caseStudyHref?: string;
-  featured?: boolean;
 }
 
 export interface EducationEntry {

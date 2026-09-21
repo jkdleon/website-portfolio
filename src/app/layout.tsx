@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import { Syne, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThreeBackground } from "@/components/ui/ThreeBackground";
 
 const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700", "800"],
 });
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -38,21 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme')||'dark';var d=t==='dark';document.documentElement.classList.toggle('dark',d);document.documentElement.classList.toggle('light',!d);})()`,
-          }}
-        />
-      </head>
+    <html lang="en">
       <body
-        className={`${syne.variable} ${manrope.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+        className={`${syne.variable} ${manrope.variable} ${jetbrainsMono.variable} bg-bg text-fg antialiased`}
       >
-        <ThreeBackground />
-        <div className="relative z-10">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

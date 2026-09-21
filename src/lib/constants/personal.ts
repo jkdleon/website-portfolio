@@ -8,9 +8,6 @@ export const personal: PersonalInfo = {
   status: 'Doha, QA · GMT+3 · open to remote',
   currently: 'AZ-104 (Apr 2026) · Terraform AWS stack in progress',
   cvHref: '/cv.pdf',
-  tagline:
-    'Cloud & Network Infrastructure Engineer · Azure (AZ-104) · AWS · GCP · Terraform · Cisco/Fortinet',
-  openToRemote: 'Doha, Qatar (GMT+3) · Open to remote and relocation',
   email: 'jameskyle.dleon@gmail.com',
   github: 'https://github.com/jkdleon',
   linkedin: 'https://linkedin.com/in/james-kyle-de-leon',

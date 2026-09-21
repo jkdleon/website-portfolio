@@ -2,7 +2,7 @@
 
 ## Overview
 
-A single-page personal portfolio website built to showcase my professional background, work history, technical skills, certifications, and projects. Designed with a dark-first aesthetic, smooth scroll animations, and full dark/light mode support.
+A single-page portfolio designed as an operations console — status-board hero with career topology, work log, projects as change records, stack grid. Dark only.
 
 ## Purpose
 
@@ -10,7 +10,7 @@ Built as a home project to establish a professional online presence while transi
 
 ## Live Site
 
-> To be updated after Vercel deployment
+https://jkdeleon.net
 
 ## GitHub Repository
 
@@ -23,26 +23,26 @@ https://github.com/jkdleon/website-portfolio
 | Framework | Next.js 16 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
-| Fonts | Geist Sans + Geist Mono (via next/font) |
+| Fonts | Syne, Manrope, JetBrains Mono (via next/font) |
 | Deployment | Vercel |
 
 ## Key Features
 
-- **Dark/light mode** — class-based toggle with `localStorage` persistence and FOUC prevention (no white flash on load)
+- **Vitest + Testing Library**
 - **Scroll fade-in animations** — sections animate in via `IntersectionObserver` as the user scrolls
 - **Responsive navigation** — sticky nav with anchor links; collapses to a hamburger menu on mobile
 - **Data-driven content** — all portfolio content (bio, experience, skills, certifications, projects) lives in `src/lib/constants/` as typed TypeScript objects; no hardcoded strings in components
-- **Resume download** — direct PDF download from the Hero section
+- **CV download** — /cv.pdf from the hero
 
 ## Site Sections
 
-1. **Hero** — Name, tagline, CTA buttons (View Work / Download Resume)
-2. **About** — Bio paragraphs describing background and transition goals
-3. **Experience** — Timeline of 5 work history entries with bullet points
-4. **Skills** — Tag grid organized by category (Networking, Cloud, Security, Monitoring, OS, Soft Skills)
-5. **Certifications** — Card grid of 6 professional certifications
-6. **Projects** — Card grid of personal/home projects (this site included)
-7. **Contact** — Email, GitHub, and LinkedIn links
+1. **Hero**
+2. **Summary**
+3. **Work**
+4. **Projects**
+5. **Stack**
+6. **Credentials**
+7. **Contact**
 
 ## Architecture Notes
 
