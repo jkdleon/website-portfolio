@@ -7,6 +7,8 @@ export const experience: ExperienceEntry[] = [
     roles: [
       {
         title: 'IT Executive (Infrastructure & Operations)',
+        scope:
+          'Hands-on infrastructure and operations role: network and firewall estate, 500+ endpoints, cloud migration, ITSM.',
         startDate: 'Aug 2025',
         endDate: 'Feb 2026',
         bullets: [
@@ -28,6 +30,8 @@ export const experience: ExperienceEntry[] = [
     roles: [
       {
         title: 'Lead Network Operations Engineer → IT Supervisor (acting head of IT)',
+        scope:
+          'Ran the IT function day-to-day for the IT Manager; one of three supervisors over a 9-engineer NOC.',
         startDate: 'Jun 2021',
         endDate: 'Jan 2025',
         bullets: [
@@ -41,6 +45,7 @@ export const experience: ExperienceEntry[] = [
       },
       {
         title: 'Network Operations Engineer',
+        scope: 'Level-1/2 network operations for 50–60 client companies.',
         startDate: 'Aug 2019',
         endDate: 'May 2021',
         bullets: [
