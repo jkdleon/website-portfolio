@@ -62,7 +62,7 @@ export function TopBar() {
               <a
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="focus-ring mono-label block py-3 text-muted hover:text-fg"
+                className="focus-ring mono-label flex min-h-11 items-center text-muted hover:text-fg"
               >
                 {link.label}
               </a>
