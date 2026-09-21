@@ -47,7 +47,7 @@ export function StatTile({ value, display, label }: StatTileProps) {
 
   return (
     <div ref={ref} className="bg-panel px-4 py-4 md:px-5">
-      <p className="font-mono text-2xl text-fg tabular-nums md:text-3xl">
+      <p className="font-mono text-2xl text-fg tabular-nums md:text-3xl" suppressHydrationWarning>
         {display ?? (canAnimate ? count : value)}
       </p>
       <p className="mono-label mt-1 text-subtle">{label}</p>
