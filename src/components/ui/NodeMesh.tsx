@@ -43,23 +43,15 @@ export function NodeMesh({ className = '' }: { className?: string }) {
     const pointGeometry = new THREE.BufferGeometry();
     pointGeometry.setAttribute('position', new THREE.BufferAttribute(pointPositions, 3));
     pointGeometry.setAttribute('color', new THREE.BufferAttribute(pointColors, 3));
-    scene.add(
-      new THREE.Points(
-        pointGeometry,
-        new THREE.PointsMaterial({ size: 2.5, sizeAttenuation: false, vertexColors: true, transparent: true })
-      )
-    );
+    const pointMaterial = new THREE.PointsMaterial({ size: 2.5, sizeAttenuation: false, vertexColors: true, transparent: true });
+    scene.add(new THREE.Points(pointGeometry, pointMaterial));
 
     const linkPositions = new Float32Array(MAX_LINKS * 2 * 3);
     const linkGeometry = new THREE.BufferGeometry();
     linkGeometry.setAttribute('position', new THREE.BufferAttribute(linkPositions, 3));
     linkGeometry.setDrawRange(0, 0);
-    scene.add(
-      new THREE.LineSegments(
-        linkGeometry,
-        new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.12 })
-      )
-    );
+    const linkMaterial = new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.12 });
+    scene.add(new THREE.LineSegments(linkGeometry, linkMaterial));
 
     const pointer = { x: 10, y: 10 };
     const onPointerMove = (e: PointerEvent) => {
@@ -69,7 +61,7 @@ export function NodeMesh({ className = '' }: { className?: string }) {
     };
     const onPointerLeave = () => { pointer.x = 10; pointer.y = 10; };
     window.addEventListener('pointermove', onPointerMove);
-    container.addEventListener('pointerleave', onPointerLeave);
+    document.addEventListener('pointerleave', onPointerLeave);
 
     const resize = () => {
       renderer.setSize(container.clientWidth, container.clientHeight, false);
@@ -121,9 +113,11 @@ export function NodeMesh({ className = '' }: { className?: string }) {
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
-      container.removeEventListener('pointerleave', onPointerLeave);
+      document.removeEventListener('pointerleave', onPointerLeave);
       pointGeometry.dispose();
       linkGeometry.dispose();
+      pointMaterial.dispose();
+      linkMaterial.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };
