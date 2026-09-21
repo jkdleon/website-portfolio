@@ -28,6 +28,7 @@ export const topologyNodes: TopologyNode[] = [
     label: 'Hong Kong edge',
     shortLabel: 'HK',
     kind: 'site',
+    labelPlacement: 'above',
     note: 'Dedicated PH–HK offshore link · Cisco core routers replaced',
     x: 300,
     y: 32,

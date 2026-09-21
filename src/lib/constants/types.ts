@@ -86,6 +86,7 @@ export interface TopologyNode {
   label: string;
   shortLabel: string;
   kind: TopologyNodeKind;
+  labelPlacement?: 'above' | 'below' | 'right';
   years?: string;
   note: string;
   x: number;

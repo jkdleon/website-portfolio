@@ -6,7 +6,7 @@ import { TOPOLOGY_VIEWBOX, topologyLinks, topologyNodes } from '@/lib/constants/
 import { TopologyLink, TopologyNode } from '@/lib/constants/types';
 
 const NODE_RADIUS = 7;
-const HIT_RADIUS = 22;
+const HIT_RADIUS = 40;
 
 function nodeById(id: string): TopologyNode {
   const node = topologyNodes.find((n) => n.id === id);
@@ -24,8 +24,9 @@ function linkPath(link: TopologyLink): string {
 }
 
 function labelPosition(node: TopologyNode): { x: number; y: number; anchor: 'middle' | 'start' } {
-  if (node.kind === 'cloud') return { x: node.x + 16, y: node.y + 4, anchor: 'start' };
-  if (node.id === 'hk') return { x: node.x, y: node.y - 16, anchor: 'middle' };
+  const placement = node.labelPlacement ?? (node.kind === 'cloud' ? 'right' : 'below');
+  if (placement === 'right') return { x: node.x + 16, y: node.y + 4, anchor: 'start' };
+  if (placement === 'above') return { x: node.x, y: node.y - 16, anchor: 'middle' };
   return { x: node.x, y: node.y + 24, anchor: 'middle' };
 }
 
@@ -65,7 +66,7 @@ export function CareerTopology() {
               role="button"
               tabIndex={0}
               aria-label={name}
-              aria-describedby="topology-tip"
+              aria-describedby={active?.id === node.id ? 'topology-tip' : undefined}
               onMouseEnter={() => setActive(node)}
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(node)}
