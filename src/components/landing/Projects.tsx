@@ -90,7 +90,7 @@ export default function Projects({ id }: { id?: string }) {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="focus-ring mt-5 inline-flex h-10 items-center gap-2 rounded-[6px] border border-line-strong px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-fg transition-colors hover:border-accent hover:text-accent"
+                        className="focus-ring mt-5 inline-flex h-11 items-center gap-2 rounded-[6px] border border-line-strong px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-fg transition-colors hover:border-accent hover:text-accent"
                       >
                         {project.linkLabel || 'View project'} <span aria-hidden="true">↗</span>
                       </a>
