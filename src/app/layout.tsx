@@ -16,9 +16,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "James Kyle De Leon | IT Executive & Network Engineer",
+  title: "James Kyle De Leon | Cloud & Network Infrastructure Engineer",
   description:
-    "Portfolio of James Kyle De Leon — IT professional with 7+ years in enterprise networking, transitioning into Cloud & DevOps. Open to remote roles.",
+    "Portfolio of James Kyle De Leon — Cloud & Network Infrastructure Engineer with 8 years in enterprise and service-provider infrastructure. Azure (AZ-104), AWS, GCP, Terraform, Cisco/Fortinet. Doha, Qatar; open to remote and relocation.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
