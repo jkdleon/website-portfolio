@@ -10,7 +10,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="scroll-mt-14 border-t border-line">
       <div className="mx-auto max-w-content px-5 py-16 md:py-20">
-        <SectionHeading index="06" label="contact" title="Let's talk." id="contact-title" />
+        <SectionHeading index="06" label="contact" title="Let’s talk." id="contact-title" />
         <div className="flex flex-wrap gap-3">
           <a href={`mailto:${personal.email}`} className={LINK_SOLID}>
             Email
