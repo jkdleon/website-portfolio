@@ -1,4 +1,4 @@
-import { Project } from './types';
+﻿import { Project } from './types';
 
 export const projects: Project[] = [
   {
@@ -59,7 +59,7 @@ export const projects: Project[] = [
       'Documented configurations and dependencies, wrote the cutover with a rehearsed rollback to the old hardware, and failed client traffic over to local ISPs before touching the core. Executed in a 30-minute low-traffic window with the NOC team running from a checklist.',
     status: { label: 'zero client downtime', tone: 'success' },
     narrative:
-      'The core routers at our Hong Kong edge and the core switches in the Philippines carried every client\'s traffic over the international link — and both needed replacing. I documented the configurations and dependencies, wrote the cutover with a rehearsed rollback to the old hardware, and failed client traffic over to local ISPs before we touched the core, so clients stayed up regardless of how the change went. We ran it in a 30-minute low-traffic window from a checklist: one engineer executing, one on Zabbix and Cacti, me verifying and acting as the single escalation point for the vendor and the Hong Kong site.',
+      'The core routers at our Hong Kong edge and the core switches in the Philippines carried every client’s traffic over the international link — and both needed replacing. I documented the configurations and dependencies, wrote the cutover with a rehearsed rollback to the old hardware, and failed client traffic over to local ISPs before we touched the core, so clients stayed up regardless of how the change went. We ran it in a 30-minute low-traffic window from a checklist: one engineer executing, one on Zabbix and Cacti, me verifying and acting as the single escalation point for the vendor and the Hong Kong site.',
     tools: ['Cisco IOS', 'Change management', 'Rollback planning', 'Zabbix', 'Cacti'],
     businessImpact:
       'Completed inside the window with zero client downtime, no rollback and no incident tickets. The failover and rollback procedure was added to the department SOP.',
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     title: 'Open-source NOC tooling stack',
     category: 'Network Operations · New Oriental Club88',
     description:
-      'Built and ran the network operations team\'s tooling on self-hosted Ubuntu servers: Zabbix, FastNetMon, Oxidized, NetBox and Snipe-IT.',
+      'Built and ran the network operations team’s tooling on self-hosted Ubuntu servers: Zabbix, FastNetMon, Oxidized, NetBox and Snipe-IT.',
     challenge:
       'The NOC needed monitoring, DDoS detection, configuration backup, an IPAM/DCIM source of truth and asset tracking — on a budget, after a commercial DDoS subscription had expired.',
     solution:
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     title: 'ITSM gap analysis',
     category: 'Service Management · Snoonu',
     description:
-      'Solo project assessing the IT department\'s processes against SLA and ITSM requirements, with an action plan to close the gaps.',
+      'Solo project assessing the IT department’s processes against SLA and ITSM requirements, with an action plan to close the gaps.',
     challenge:
       'The department had no formal picture of where its incident, request and change handling fell short of SLA and ITSM expectations.',
     solution:
@@ -130,13 +130,12 @@ export const projects: Project[] = [
     challenge:
       'Store managers reported slow connectivity and ageing equipment across the dark-store estate.',
     solution:
-      'Gathered requirements with store managers, audited assets for replacement or upgrade, verified the reported slowness, and right-sized each store\'s internet bandwidth.',
+      'Gathered requirements with store managers, audited assets for replacement or upgrade, verified the reported slowness, and right-sized each store’s internet bandwidth.',
     year: '2025',
     status: { label: 'delivered', tone: 'success' },
     narrative:
-      'Store managers across the Snoomart dark stores reported slow connectivity and ageing equipment. I gathered requirements with the store managers, audited the assets for replacement or upgrade, verified the reported slowness rather than taking it on faith, and right-sized each store\'s internet bandwidth.',
+      'Store managers across the Snoomart dark stores reported slow connectivity and ageing equipment. I gathered requirements with the store managers, audited the assets for replacement or upgrade, verified the reported slowness rather than taking it on faith, and right-sized each store’s internet bandwidth.',
     tools: ['Requirements gathering', 'Asset audit', 'Bandwidth planning'],
-    businessImpact: 'Delivered the refresh plan with rightsized internet bandwidth and scheduled asset upgrades.',
     link: '',
     linkLabel: '',
   },
