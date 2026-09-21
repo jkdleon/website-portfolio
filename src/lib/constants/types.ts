@@ -18,6 +18,7 @@ export interface Role {
 export interface ExperienceEntry {
   company: string;
   location: string;
+  description?: string;
   roles: Role[];
 }
 

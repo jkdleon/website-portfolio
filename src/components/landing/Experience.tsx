@@ -51,6 +51,12 @@ export default function Experience({ id }: { id?: string }) {
                   </span>
                 </div>
 
+                {entry.description && (
+                  <p className="px-5 md:px-8 py-4 border-b border-border text-muted text-sm leading-relaxed">
+                    {entry.description}
+                  </p>
+                )}
+
                 {/* Roles */}
                 <ul>
                   {entry.roles.map((role, ri) => {
