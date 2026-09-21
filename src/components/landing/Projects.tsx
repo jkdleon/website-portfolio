@@ -28,6 +28,7 @@ export default function Projects({ id }: { id?: string }) {
               <Expandable
                 key={project.title}
                 id={`project-${index}`}
+                label={`${number} — ${project.title}`}
                 open={open}
                 onToggle={() => setOpenIndex(open ? null : index)}
                 summary={

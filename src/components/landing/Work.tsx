@@ -44,6 +44,7 @@ export function Work({ id }: { id?: string }) {
                       <Expandable
                         key={key}
                         id={`role-${ci}-${ri}`}
+                        label={`${entry.company} — ${role.title}`}
                         open={open}
                         onToggle={() => setOpenKey(open ? null : key)}
                         summary={

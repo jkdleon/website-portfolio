@@ -18,8 +18,18 @@ export function TopBar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-[6px] focus:bg-fg focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.12em] focus:text-bg"
+      >
+        Skip to content
+      </a>
+
       <div className="mx-auto flex h-14 max-w-content items-center justify-between gap-4 px-5">
-        <a href="#overview" className="focus-ring font-mono text-sm font-medium tracking-[0.2em] text-fg">
+        <a
+          href="#overview"
+          className="focus-ring inline-flex h-11 items-center font-mono text-sm font-medium tracking-[0.2em] text-fg"
+        >
           JKDL
         </a>
 
@@ -29,7 +39,7 @@ export function TopBar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="focus-ring mono-label block rounded-[4px] px-3 py-2 text-muted transition-colors hover:text-fg"
+                  className="focus-ring mono-label flex min-h-11 items-center rounded-[4px] px-3 text-muted transition-colors hover:text-fg"
                 >
                   {link.label}
                 </a>
@@ -56,19 +66,21 @@ export function TopBar() {
       </div>
 
       <div id="topbar-menu" hidden={!menuOpen} className="border-t border-line md:hidden">
-        <ul className="mx-auto max-w-content px-5 py-2">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="focus-ring mono-label flex min-h-11 items-center text-muted hover:text-fg"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <nav aria-label="Primary">
+          <ul className="mx-auto max-w-content px-5 py-2">
+            {LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="focus-ring mono-label flex min-h-11 items-center text-muted hover:text-fg"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   );

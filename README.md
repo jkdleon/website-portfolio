@@ -62,7 +62,7 @@ Most updates happen in `src/lib/constants/`.
 | `experience.ts` | Work history entries |
 | `education.ts` | Education and academic log entries |
 | `certifications.ts` | Certification cards |
-| `projects.ts` | Project cards, case-study modal content, links, tools, impact text |
+| `projects.ts` | Project cards, change-record content, links, tools, impact text |
 | `stats.ts` | Hero stat tiles |
 | `topology.ts` | Career-topology nodes and links |
 
@@ -115,7 +115,7 @@ npm run build
 - Theme colors are defined with CSS variables and mapped through `@theme`.
 - Expandable is the one expand/collapse primitive (aria-expanded/aria-controls, 250 ms grid-rows transition, inert when closed).
 - NodeMesh renders only behind the hero; its geometry lives in src/lib/mesh so it is unit-tested without WebGL.
-- Project cards are buttons because they open a modal; external links live inside the modal content.
+- Project rows expand in place via the shared `Expandable` primitive; external links live inside the expanded body.
 
 ## Maintenance
 

@@ -29,7 +29,6 @@ https://github.com/jkdleon/website-portfolio
 ## Key Features
 
 - **Vitest + Testing Library**
-- **Scroll fade-in animations** — sections animate in via `IntersectionObserver` as the user scrolls
 - **Responsive navigation** — sticky nav with anchor links; collapses to a hamburger menu on mobile
 - **Data-driven content** — all portfolio content (bio, experience, skills, certifications, projects) lives in `src/lib/constants/` as typed TypeScript objects; no hardcoded strings in components
 - **CV download** — /cv.pdf from the hero
@@ -47,8 +46,7 @@ https://github.com/jkdleon/website-portfolio
 ## Architecture Notes
 
 - Tailwind v4 CSS-first config — no `tailwind.config.ts`; colors and fonts defined via `@theme {}` in `globals.css`
-- Dark mode via `@custom-variant dark` in CSS + `.dark` class toggled on `<html>`
-- `SectionWrapper` component handles all scroll-triggered fade-ins using `IntersectionObserver`
+- `Expandable` is the shared expand/collapse primitive; `NodeMesh` geometry lives in `src/lib/mesh/`
 - All content updates happen in `src/lib/constants/` — adding a project means appending one object to `projects.ts`
 
 ## Development Timeline

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <TopBar />
-      <main>
+      <main id="main-content">
         <Hero id="overview" />
         <Summary id="summary" />
         <Work id="work" />

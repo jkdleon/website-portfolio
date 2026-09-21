@@ -63,7 +63,6 @@ export function CareerTopology() {
           return (
             <g
               key={node.id}
-              role="button"
               tabIndex={0}
               aria-label={name}
               aria-describedby={active?.id === node.id ? 'topology-tip' : undefined}
@@ -71,7 +70,7 @@ export function CareerTopology() {
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(node)}
               onBlur={() => setActive(null)}
-              className="focus-ring cursor-default outline-none [&:focus-visible>circle:first-child]:stroke-accent"
+              className="focus-ring cursor-default outline-none"
             >
               <circle cx={node.x} cy={node.y} r={HIT_RADIUS} fill="transparent" stroke="none" />
               {node.kind === 'cloud' ? (
@@ -97,6 +96,7 @@ export function CareerTopology() {
                 x={label.x}
                 y={label.y}
                 textAnchor={label.anchor}
+                aria-hidden="true"
                 className="hidden fill-muted font-mono text-[11px] tracking-[0.08em] sm:block"
               >
                 {node.label}
@@ -105,6 +105,7 @@ export function CareerTopology() {
                 x={label.x}
                 y={label.y}
                 textAnchor={label.anchor}
+                aria-hidden="true"
                 className="fill-muted font-mono text-[11px] tracking-[0.08em] sm:hidden"
               >
                 {node.shortLabel}

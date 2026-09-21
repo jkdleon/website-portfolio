@@ -7,11 +7,12 @@ interface ExpandableProps {
   open: boolean;
   onToggle: () => void;
   summary: ReactNode;
+  label?: string;
   className?: string;
   children: ReactNode;
 }
 
-export function Expandable({ id, open, onToggle, summary, className = '', children }: ExpandableProps) {
+export function Expandable({ id, open, onToggle, summary, label, className = '', children }: ExpandableProps) {
   return (
     <div className={className}>
       <button
@@ -32,6 +33,7 @@ export function Expandable({ id, open, onToggle, summary, className = '', childr
       <div
         id={id}
         role="region"
+        aria-label={label}
         aria-hidden={!open}
         inert={!open}
         className={`grid transition-[grid-template-rows] duration-250 ease-out-soft motion-reduce:transition-none ${
