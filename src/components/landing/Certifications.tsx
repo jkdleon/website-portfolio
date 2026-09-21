@@ -19,9 +19,16 @@ export default function Certifications() {
             >
               <div>
                 <p className="font-medium text-foreground">{cert.name}</p>
-                <p className="font-mono text-xs text-subtle mt-1">{cert.issuer}</p>
+                <p className="font-mono text-xs text-subtle mt-1">
+                  {cert.issuer}
+                  {cert.date && ` · ${cert.date}`}
+                </p>
               </div>
-              <span className="chip-authorized shrink-0">Authorized</span>
+              {cert.expired ? (
+                <span className="chip-mono shrink-0">Expired</span>
+              ) : (
+                <span className="chip-authorized shrink-0">Authorized</span>
+              )}
             </div>
           ))}
         </div>

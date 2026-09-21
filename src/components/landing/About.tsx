@@ -4,6 +4,7 @@ import { StatCard } from '@/components/ui/StatCard';
 import { experience } from '@/lib/constants/experience';
 import { certifications } from '@/lib/constants/certifications';
 import { skills } from '@/lib/constants/skills';
+import { personal } from '@/lib/constants/personal';
 
 const totalSkills = skills.reduce((sum, cat) => sum + cat.skills.length, 0);
 const totalRoles = experience.reduce((sum, item) => sum + item.roles.length, 0);
@@ -17,8 +18,16 @@ export default function About() {
           Operations discipline, network depth, cloud trajectory.
         </h2>
 
+        <div className="max-w-3xl space-y-4 mb-12">
+          {personal.bio.map((paragraph, i) => (
+            <p key={i} className="text-muted text-base md:text-lg leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard value={7} suffix="+" label="Years Experience" />
+          <StatCard value={8} suffix="" label="Years Experience" />
           <StatCard value={totalRoles} suffix="" label="Roles Held" />
           <StatCard value={certifications.length} suffix="" label="Certifications" />
           <StatCard value={totalSkills} suffix="+" label="Skills" />

@@ -29,7 +29,8 @@ export interface SkillCategory {
 export interface Certification {
   name: string;
   issuer: string;
-  year?: string;
+  date?: string;
+  expired?: boolean;
 }
 
 export interface Project {
