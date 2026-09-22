@@ -1,30 +1,24 @@
-import Nav from '@/components/ui/Nav';
-import ScrollProgress from '@/components/ui/ScrollProgress';
-import Hero from '@/components/landing/Hero';
-import About from '@/components/landing/About';
-import Skills from '@/components/landing/Skills';
-import Certifications from '@/components/landing/Certifications';
-import AcademicLog from '@/components/landing/AcademicLog';
-import Experience from '@/components/landing/Experience';
-import FeaturedVenture from '@/components/landing/FeaturedVenture';
-import Projects from '@/components/landing/Projects';
 import Contact from '@/components/landing/Contact';
+import { Credentials } from '@/components/landing/Credentials';
 import Footer from '@/components/landing/Footer';
+import Hero from '@/components/landing/Hero';
+import Projects from '@/components/landing/Projects';
+import { Stack } from '@/components/landing/Stack';
+import { Summary } from '@/components/landing/Summary';
+import { Work } from '@/components/landing/Work';
+import { TopBar } from '@/components/ui/TopBar';
 
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
-      <Nav />
-      <main>
+      <TopBar />
+      <main id="main-content" tabIndex={-1}>
         <Hero id="overview" />
-        <About />
-        <Skills id="skills" />
-        <Certifications />
-        <AcademicLog id="education" />
-        <Experience id="history" />
-        <FeaturedVenture id="venture" />
+        <Summary id="summary" />
+        <Work id="work" />
         <Projects id="projects" />
+        <Stack id="stack" />
+        <Credentials id="credentials" />
         <Contact />
       </main>
       <Footer />

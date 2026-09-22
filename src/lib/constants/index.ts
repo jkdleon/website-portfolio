@@ -4,3 +4,5 @@ export { skills } from './skills';
 export { certifications } from './certifications';
 export { projects } from './projects';
 export { education } from './education';
+export { stats } from './stats';
+export { TOPOLOGY_VIEWBOX, topologyLinks, topologyNodes } from './topology';
