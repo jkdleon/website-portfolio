@@ -12,7 +12,7 @@ export const personal: PersonalInfo = {
   github: 'https://github.com/jkdleon',
   linkedin: 'https://linkedin.com/in/james-kyle-de-leon',
   bio: [
-    'Network engineer with 8 years in enterprise and service-provider infrastructure, including 5 years running network operations for a managed connectivity provider serving 50–60 client companies and thousands of end users over a dedicated Philippines–Hong Kong offshore link.',
-    'Migrated a production on-premises system to Google Cloud with zero downtime; administer Azure (AZ-104) and AWS environments and define infrastructure in Terraform. Promoted from NOC engineer to acting head of IT within one company.',
+    'Network engineer with 8 years in enterprise and service-provider infrastructure, including 5 years running network operations for a managed connectivity provider serving 50-60 client companies and about 1,800 public IPs over a dedicated Philippines to Hong Kong link.',
+    'Migrated a production system to Google Cloud with zero downtime, mitigated DDoS attacks through Imperva and wrote my department’s SOPs. I administer Azure (AZ-104) and AWS environments and define infrastructure in Terraform. Promoted from NOC engineer to acting head of IT within one company.',
   ],
 };

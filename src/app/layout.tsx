@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "James Kyle De Leon | Cloud & Network Infrastructure Engineer",
   description:
-    "Portfolio of James Kyle De Leon — Cloud & Network Infrastructure Engineer with 8 years in enterprise and service-provider infrastructure. Azure (AZ-104), AWS, GCP, Terraform, Cisco/Fortinet. Doha, Qatar; open to remote and relocation.",
+    "Portfolio of James Kyle De Leon, Cloud & Network Infrastructure Engineer with 8 years in enterprise and service-provider infrastructure. Azure (AZ-104), AWS, GCP, Terraform, Cisco/Fortinet. Doha, Qatar. Open to remote and relocation.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

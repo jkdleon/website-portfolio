@@ -59,7 +59,7 @@ export function CareerTopology() {
 
         {topologyNodes.map((node) => {
           const label = labelPosition(node);
-          const name = [node.label, node.years, node.note].filter(Boolean).join(' — ');
+          const name = [node.label, node.years, node.note].filter(Boolean).join(', ');
           return (
             <g
               key={node.id}

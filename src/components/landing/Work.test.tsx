@@ -7,8 +7,8 @@ import { Work } from '@/components/landing/Work';
 describe('Work', () => {
   it('renders the full Snoonu title and its scope line', () => {
     render(<Work id="work" />);
-    expect(screen.getByText('IT Executive (Infrastructure & Operations)')).toBeInTheDocument();
-    expect(screen.getByText(/Hands-on infrastructure and operations role/)).toBeInTheDocument();
+    expect(screen.getByText('IT Infrastructure and Operations Engineer')).toBeInTheDocument();
+    expect(screen.getByText(/Official title: IT Executive/)).toBeInTheDocument();
   });
 
   it('opens the first role by default and only one at a time', async () => {
