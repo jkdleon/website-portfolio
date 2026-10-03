@@ -2,7 +2,7 @@ import { EducationEntry } from './types';
 
 export const education: EducationEntry[] = [
   {
-    degree: 'BSc Electronics & Communication Engineering',
+    degree: 'Bachelor of Science, Electronics Engineering',
     institution: 'National University, Manila',
     dates: '2016',
     details: ['WES-evaluated as equivalent to a four-year bachelor\'s degree.'],

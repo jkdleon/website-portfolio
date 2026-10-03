@@ -16,14 +16,15 @@ describe('Projects', () => {
   it('opens one record at a time and shows its status text', async () => {
     render(<Projects id="projects" />);
     const buttons = screen.getAllByRole('button');
-    await userEvent.click(buttons[1]);
-    expect(buttons[1]).toHaveAttribute('aria-expanded', 'true');
+    const terraform = projects.findIndex((p) => p.title.includes('Terraform'));
+    await userEvent.click(buttons[terraform]);
+    expect(buttons[terraform]).toHaveAttribute('aria-expanded', 'true');
     // The summary row also carries a status chip (CSS-hidden on phones), so scope the
     // assertion to the expanded region.
-    const region = document.getElementById('project-1') as HTMLElement;
+    const region = document.getElementById(`project-${terraform}`) as HTMLElement;
     expect(within(region).getByText(/authored · deployment pending/)).toBeInTheDocument();
     await userEvent.click(buttons[0]);
-    expect(buttons[1]).toHaveAttribute('aria-expanded', 'false');
+    expect(buttons[terraform]).toHaveAttribute('aria-expanded', 'false');
     expect(buttons[0]).toHaveAttribute('aria-expanded', 'true');
   });
 });

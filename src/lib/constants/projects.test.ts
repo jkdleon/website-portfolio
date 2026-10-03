@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { projects } from '@/lib/constants/projects';
 
 describe('projects', () => {
-  it('lists exactly eight projects', () => {
-    expect(projects).toHaveLength(8);
+  it('lists exactly eleven projects', () => {
+    expect(projects).toHaveLength(11);
   });
 
   it('gives every project a narrative and a status with text', () => {

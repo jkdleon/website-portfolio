@@ -29,7 +29,7 @@ export function Work({ id }: { id?: string }) {
                     </MonoLabel>
                   </div>
                   <MonoLabel as="p">
-                    {first.startDate} — {last.endDate}
+                    {first.startDate} – {last.endDate}
                   </MonoLabel>
                   {entry.description && (
                     <p className="basis-full pt-2 text-sm leading-relaxed text-muted">{entry.description}</p>
@@ -44,13 +44,13 @@ export function Work({ id }: { id?: string }) {
                       <Expandable
                         key={key}
                         id={`role-${ci}-${ri}`}
-                        label={`${entry.company} — ${role.title}`}
+                        label={`${entry.company}: ${role.title}`}
                         open={open}
                         onToggle={() => setOpenKey(open ? null : key)}
                         summary={
                           <span className="grid min-w-0 gap-1 md:grid-cols-[9.5rem_minmax(0,1fr)] md:gap-6">
                             <MonoLabel as="span" className="pt-1">
-                              {role.startDate} — {role.endDate}
+                              {role.startDate} – {role.endDate}
                             </MonoLabel>
                             <span className="min-w-0">
                               <span className={`block text-base font-semibold ${open ? 'text-accent' : 'text-fg'}`}>
