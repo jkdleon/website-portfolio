@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Manrope, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const syne = Syne({
@@ -42,6 +43,7 @@ export default function RootLayout({
         className={`${syne.variable} ${manrope.variable} ${jetbrainsMono.variable} bg-bg text-fg antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
