@@ -149,6 +149,21 @@ export const projects: Project[] = [
     linkLabel: 'View on GitHub',
   },
   {
+    title: 'Snipe-IT asset agreement automation',
+    category: 'Automation · Infrastructure · Personal',
+    description:
+      'Snipe-IT checkouts and check-ins trigger e-signature agreements through n8n and Documenso, archived to the asset record and Google Drive. Runs on AWS. In progress.',
+    year: '2026',
+    status: { label: 'in progress', tone: 'pending' },
+    narrative:
+      'Device handover agreements are the step that gets skipped: printed, signed, scanned and lost by audit time. I built the Snipe-IT infrastructure on AWS by hand first (VPC, private RDS, EC2 with Docker and Caddy, SSM instead of SSH), then automated the agreement loop with n8n and Documenso: the employee signs, the IT admin who did the handover countersigns, and the signed PDF lands on the asset record and in Google Drive. n8n Cloud has no fixed IP, so its access to the API is secured with mutual TLS and a least-privilege token. A self-hosted n8n rebuild and a Terraform rebuild are in progress.',
+    tools: ['AWS EC2', 'RDS', 'Docker', 'Caddy', 'Snipe-IT', 'n8n', 'Documenso', 'mTLS', 'Terraform'],
+    businessImpact:
+      'Status: the hand-built infrastructure and the n8n Cloud automation are done and tested with real documents. The self-hosted comparison and the Terraform rebuild are in progress.',
+    link: '/projects/snipeit-automation',
+    linkLabel: 'Read the project page',
+  },
+  {
     title: 'Personal portfolio website',
     category: 'Web · Personal',
     description:
