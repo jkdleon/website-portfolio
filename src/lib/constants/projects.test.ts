@@ -3,8 +3,14 @@ import { describe, expect, it } from 'vitest';
 import { projects } from '@/lib/constants/projects';
 
 describe('projects', () => {
-  it('lists exactly eleven projects', () => {
-    expect(projects).toHaveLength(11);
+  it('lists exactly twelve projects', () => {
+    expect(projects).toHaveLength(12);
+  });
+
+  it('marks the Snipe-IT automation as in progress and links to its project page', () => {
+    const snipeit = projects.find((p) => p.title.includes('Snipe-IT asset agreement'));
+    expect(snipeit?.status.tone).toBe('pending');
+    expect(snipeit?.link).toBe('/projects/snipeit-automation');
   });
 
   it('gives every project a narrative and a status with text', () => {
