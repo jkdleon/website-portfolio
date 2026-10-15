@@ -27,8 +27,8 @@ const STACK = ['AWS EC2', 'RDS MariaDB', 'VPC', 'SSM', 'Docker Compose', 'Caddy'
 const STATUS = [
   { phase: 'AWS infrastructure, built by hand in the console', state: 'done', tone: 'success' as const },
   { phase: 'Signing automation on n8n Cloud, secured with mutual TLS', state: 'done', tone: 'success' as const },
-  { phase: 'Self-hosted n8n rebuild and comparison', state: 'in progress', tone: 'pending' as const },
-  { phase: 'Terraform rebuild of the infrastructure', state: 'planned', tone: 'neutral' as const },
+  { phase: 'Self-hosted n8n rebuild and comparison', state: 'done', tone: 'success' as const },
+  { phase: 'Terraform rebuild of the infrastructure', state: 'in progress', tone: 'pending' as const },
 ];
 
 const LINK_SOLID =
@@ -69,13 +69,20 @@ export default function SnipeItAutomationPage() {
 
         <section aria-labelledby="security-title" className="mt-10">
           <h2 id="security-title" className="font-display text-xl font-bold tracking-tight text-fg">
-            The interesting part
+            Built twice, compared
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-muted">
-            n8n Cloud has no fixed IP address, so an IP allowlist can’t protect Snipe-IT’s API. Instead, the API has its
-            own hostname that requires mutual TLS: a client certificate signed by a private CA, plus a least-privilege
-            API token. Every webhook is treated as a signal only and verified against Snipe-IT’s own records before
-            anything is sent. A self-hosted n8n rebuild is now being compared against this design.
+            n8n Cloud has no fixed IP address, so an IP allowlist can’t protect Snipe-IT’s API. In the first version,
+            the API had its own hostname that required mutual TLS: a client certificate signed by a private CA, plus a
+            least-privilege API token. Every webhook is treated as a signal only and verified against Snipe-IT’s own
+            records before anything is sent.
+          </p>
+          <p className="mt-4 text-[15px] leading-relaxed text-muted">
+            I then rebuilt it with n8n self-hosted next to Snipe-IT and compared the two. The API calls never leave
+            the server (Snipe-IT’s audit trail shows an internal address instead of a shared public IP), the API
+            hostname is gone, only one webhook path is public, and it added no compute cost. Every system now runs on
+            one business timezone, so agreement dates and signing times match the audit trail. The self-hosted
+            version is the one the Terraform rebuild will codify.
           </p>
         </section>
 

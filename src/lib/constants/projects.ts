@@ -152,14 +152,14 @@ export const projects: Project[] = [
     title: 'Snipe-IT asset agreement automation',
     category: 'Automation · Infrastructure · Personal',
     description:
-      'Snipe-IT checkouts and check-ins trigger e-signature agreements through n8n and Documenso, archived to the asset record and Google Drive. Runs on AWS. In progress.',
+      'Snipe-IT checkouts and check-ins trigger e-signature agreements through n8n and Documenso, archived to the asset record and Google Drive. Runs on AWS, built and compared on n8n Cloud and self-hosted n8n. Terraform rebuild in progress.',
     year: '2026',
-    status: { label: 'in progress', tone: 'pending' },
+    status: { label: 'working · terraform in progress', tone: 'pending' },
     narrative:
-      'Device handover agreements are the step that gets skipped: printed, signed, scanned and lost by audit time. I built the Snipe-IT infrastructure on AWS by hand first (VPC, private RDS, EC2 with Docker and Caddy, SSM instead of SSH), then automated the agreement loop with n8n and Documenso: the employee signs, the IT admin who did the handover countersigns, and the signed PDF lands on the asset record and in Google Drive. n8n Cloud has no fixed IP, so its access to the API is secured with mutual TLS and a least-privilege token. A self-hosted n8n rebuild and a Terraform rebuild are in progress.',
+      'Device handover agreements are the step that gets skipped: printed, signed, scanned and lost by audit time. I built the Snipe-IT infrastructure on AWS by hand first (VPC, private RDS, EC2 with Docker and Caddy, SSM instead of SSH), then automated the agreement loop with n8n and Documenso: the employee signs, the IT admin who did the handover countersigns, and the signed PDF lands on the asset record and in Google Drive. n8n Cloud has no fixed IP, so its access to the API was secured with mutual TLS and a least-privilege token. I then rebuilt it on self-hosted n8n next to Snipe-IT and compared the two: the API calls never leave the server, the API hostname is gone, it added no compute cost, and every system runs on one business timezone. The Terraform rebuild of the self-hosted version is in progress.',
     tools: ['AWS EC2', 'RDS', 'Docker', 'Caddy', 'Snipe-IT', 'n8n', 'Documenso', 'mTLS', 'Terraform'],
     businessImpact:
-      'Status: the hand-built infrastructure and the n8n Cloud automation are done and tested with real documents. The self-hosted comparison and the Terraform rebuild are in progress.',
+      'Status: the hand-built infrastructure and both deployments (n8n Cloud with mTLS, self-hosted n8n) are done and tested with real documents, and the comparison is written up. The Terraform rebuild is in progress.',
     link: '/projects/snipeit-automation',
     linkLabel: 'Read the project page',
   },
